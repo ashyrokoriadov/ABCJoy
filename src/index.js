@@ -1,6 +1,14 @@
 import React from "react";
-import ReactDOM from "react-dom";
-
+import { render } from "react-dom";
 import App from "./components/App";
+import configureStore from "./redux/configureStore";
+import { Provider as ReduxProvider } from "react-redux";
 
-ReactDOM.render(<App />, document.getElementById("app"));
+const store = configureStore();
+
+render(
+  <ReduxProvider store={store}>
+    <App />
+  </ReduxProvider>,
+  document.getElementById("app")
+);
