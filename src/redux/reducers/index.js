@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
-import kanjiCategories from "./kanjiReducer";
-import katakanaCategories from "./katakanaReducer";
-import hiraganaCategories from "./hiraganaReducer";
+import kanjiCategories from "./kanjiCategoryReducer";
+import katakanaCategories from "./katakanaCategoryReducer";
+import hiraganaCategories from "./hiraganaCategoryReducer";
 
 const rootReducer = combineReducers({
   kanjiCategories,
