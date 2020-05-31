@@ -1,5 +1,5 @@
 import React from "react";
-import Menu from "./Menu";
+import Menu from "./MenuItems/Menu";
 import Header from "./Header";
 import Content from "./Content";
 import Footer from "./Footer";
