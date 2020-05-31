@@ -6,8 +6,6 @@ export default function kanjiCategoriesReducer(
   action
 ) {
   switch (action.type) {
-    case types.LOAD_KANJI_CATEGORIES:
-      return state;
     case types.LOAD_KANJI_CATEGORIES_SUCCESS:
       return action.categories;
     default:

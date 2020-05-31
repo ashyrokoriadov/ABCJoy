@@ -1,7 +1,8 @@
-//const baseUrl = process.env.API_URL + "/courses/";
-const baseUrl = "https://localhost:44342/api/kanji/types";
+const baseUrl = process.env.API_URL + "/kanji/";
 import { handleResponse, handleError } from "./apiUtils";
 
 export function getKanjiCategories() {
-  return fetch(baseUrl).then(handleResponse).catch(handleError);
+  return fetch(baseUrl + "types")
+    .then(handleResponse)
+    .catch(handleError);
 }

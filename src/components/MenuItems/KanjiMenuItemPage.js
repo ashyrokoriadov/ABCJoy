@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import * as kanjiActions from "../../redux/actions/kanjiActions";
 import PropTypes from "prop-types";
 import KanjiMenuItem from "./KanjiMenuItem";
+import { mapCategoryToFa } from "./CategoryMappers";
 
 class KanjiMenuItemPage extends React.Component {
   componentDidMount() {
@@ -17,7 +18,12 @@ class KanjiMenuItemPage extends React.Component {
   }
 
   render() {
-    return <KanjiMenuItem categories={this.props.categories} />;
+    return (
+      <KanjiMenuItem
+        categories={this.props.categories}
+        mapCategory={mapCategoryToFa}
+      />
+    );
   }
 }
 
