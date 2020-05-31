@@ -1,7 +1,7 @@
 import React from "react";
 import JapanFlag from "./JapanFlag";
 import KanjiMenuItemPage from "./MenuItems/KanjiMenuItemPage";
-import HiraganaMenuItem from "./MenuItems/HiraganaMenuItem";
+import HiraganaMenuItemPage from "./MenuItems/HiraganaMenuItemPage";
 import KatakanaMenuItemPage from "./MenuItems/KatakanaMenuItemPage";
 
 export default function Menu() {
@@ -9,7 +9,7 @@ export default function Menu() {
     <div className="nav">
       <JapanFlag />
       <KanjiMenuItemPage />
-      <HiraganaMenuItem />
+      <HiraganaMenuItemPage />
       <KatakanaMenuItemPage />
     </div>
   );

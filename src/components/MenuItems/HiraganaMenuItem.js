@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-export default function HiraganaMenuItem() {
+const HiraganaMenuItem = ({ categories, mapCategory }) => {
   return (
     <>
       <div className="menu-item menu-item-hiragana">
@@ -11,15 +12,17 @@ export default function HiraganaMenuItem() {
         id="sub-menu-hiragana"
       >
         <div className="sub-menu-items sub-menu-items-hiragana">
-          <div className="sliding-menu-item">
-            <p className="sub-menu-item-text"> ほ </p>
-          </div>
-          <div className="sliding-menu-item">
-            <p className="sub-menu-item-text"> ぼ </p>
-          </div>
-          <div className="sliding-menu-item">
-            <p className="sub-menu-item-text"> ぽ </p>
-          </div>
+          {categories.map((category) => {
+            return (
+              <div
+                key={category}
+                className="sliding-menu-item"
+                title={category}
+              >
+                <p className="sub-menu-item-text">{mapCategory(category)}</p>
+              </div>
+            );
+          })}
         </div>
         <div className="sliding-menu-header">
           <span className="sub-menu-item-header"> Hiragana </span>
@@ -27,4 +30,11 @@ export default function HiraganaMenuItem() {
       </div>
     </>
   );
-}
+};
+
+HiraganaMenuItem.propTypes = {
+  categories: PropTypes.array.isRequired,
+  mapCategory: PropTypes.func.isRequired,
+};
+
+export default HiraganaMenuItem;

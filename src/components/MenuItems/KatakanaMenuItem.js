@@ -24,7 +24,7 @@ const KatakanaMenuItem = ({ categories, mapCategory }) => {
             );
           })}
         </div>
-        <div className="sliding-menu-header test-class">
+        <div className="sliding-menu-header">
           <span className="sub-menu-item-header"> Katakana </span>
         </div>
       </div>

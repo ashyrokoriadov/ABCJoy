@@ -35,3 +35,16 @@ export function mapCategoryToKatakana(category) {
       return "ホ";
   }
 }
+
+export function mapCategoryToHiragana(category) {
+  switch (category) {
+    case "Regular":
+      return "ほ";
+    case "Dakuten":
+      return "ぼ";
+    case "Handakuten":
+      return "ぽ ";
+    default:
+      return "ほ";
+  }
+}

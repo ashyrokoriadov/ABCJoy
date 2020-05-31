@@ -221,14 +221,10 @@ div.sub-menu-items {
   display: grid;
 }
 
-div.sub-menu-items-kanji {
-  grid-template-columns: 33% 33% 33%;
-}
-
+div.sub-menu-items-kanji,
 div.sub-menu-items-katakana,
 div.sub-menu-items-hiragana {
   grid-template-columns: 33% 33% 33%;
-  grid-template-rows: 100%;
 }
 
 div.sliding-menu-katakana:not(:hover),
