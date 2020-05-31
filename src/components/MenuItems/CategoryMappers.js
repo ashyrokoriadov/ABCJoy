@@ -22,3 +22,16 @@ export function mapCategoryToFa(category, size = "fa-2x") {
       return "far fa-sun " + size;
   }
 }
+
+export function mapCategoryToKatakana(category) {
+  switch (category) {
+    case "Regular":
+      return "ホ";
+    case "Dakuten":
+      return "ボ";
+    case "Handakuten":
+      return "ポ";
+    default:
+      return "ホ";
+  }
+}

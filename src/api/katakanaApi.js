@@ -1,7 +1,7 @@
-const baseUrl = process.env.API_URL + "/kanji/";
+const baseUrl = process.env.API_URL + "/katakana/";
 import { handleResponse, handleError } from "./apiUtils";
 
-export function getKanjiCategories() {
+export function getCategories() {
   return fetch(baseUrl + "types")
     .then(handleResponse)
     .catch(handleError);

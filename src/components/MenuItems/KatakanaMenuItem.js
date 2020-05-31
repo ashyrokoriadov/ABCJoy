@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-export default function KatakanaMenuItem() {
+const KatakanaMenuItem = ({ categories, mapCategory }) => {
   return (
     <>
       <div className="menu-item menu-item-katakana">
@@ -11,15 +12,17 @@ export default function KatakanaMenuItem() {
         id="sub-menu-katakana"
       >
         <div className="sub-menu-items sub-menu-items-katakana">
-          <div className="sliding-menu-item">
-            <p className="sub-menu-item-text"> ホ </p>
-          </div>
-          <div className="sliding-menu-item">
-            <p className="sub-menu-item-text"> ボ </p>
-          </div>
-          <div className="sliding-menu-item">
-            <p className="sub-menu-item-text"> ポ </p>
-          </div>
+          {categories.map((category) => {
+            return (
+              <div
+                key={category}
+                className="sliding-menu-item"
+                title={category}
+              >
+                <p className="sub-menu-item-text">{mapCategory(category)}</p>
+              </div>
+            );
+          })}
         </div>
         <div className="sliding-menu-header test-class">
           <span className="sub-menu-item-header"> Katakana </span>
@@ -27,4 +30,11 @@ export default function KatakanaMenuItem() {
       </div>
     </>
   );
-}
+};
+
+KatakanaMenuItem.propTypes = {
+  categories: PropTypes.array.isRequired,
+  mapCategory: PropTypes.func.isRequired,
+};
+
+export default KatakanaMenuItem;

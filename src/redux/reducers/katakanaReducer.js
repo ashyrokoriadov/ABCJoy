@@ -1,12 +1,12 @@
 import * as types from "../actions/actionTypes";
 import initialState from "./initialState";
 
-export default function kanjiCategoriesReducer(
-  state = initialState.kanjiCategories,
+export default function katkanaReducer(
+  state = initialState.katakanaCategories,
   action
 ) {
   switch (action.type) {
-    case types.LOAD_KANJI_CATEGORIES_SUCCESS:
+    case types.LOAD_KATAKANA_CATEGORIES_SUCCESS:
       return action.categories;
     default:
       return state;

@@ -1,13 +1,13 @@
 import * as types from "./actionTypes";
-import * as kanjiApi from "../../api/kanjiApi";
+import * as katakanaApi from "../../api/katakanaApi";
 
 export function loadCategoriesSuccess(categories) {
-  return { type: types.LOAD_KANJI_CATEGORIES_SUCCESS, categories };
+  return { type: types.LOAD_KATAKANA_CATEGORIES_SUCCESS, categories };
 }
 
 export function loadCategories() {
   return function (dispatch) {
-    return kanjiApi
+    return katakanaApi
       .getCategories()
       .then((categories) => {
         dispatch(loadCategoriesSuccess(categories));

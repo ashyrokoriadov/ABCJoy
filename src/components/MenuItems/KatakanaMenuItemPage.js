@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as kanjiActions from "../../redux/actions/kanjiActions";
+import * as katakanaActions from "../../redux/actions/katakanaActions";
 import PropTypes from "prop-types";
-import KanjiMenuItem from "./KanjiMenuItem";
-import { mapCategoryToFa } from "./CategoryMappers";
+import KatakanaMenuItem from "./KatakanaMenuItem";
+import { mapCategoryToKatakana } from "./CategoryMappers";
 
-class KanjiMenuItemPage extends React.Component {
+class KatakanaMenuItemPage extends React.Component {
   componentDidMount() {
     const { categories, actions } = this.props;
 
@@ -19,31 +19,37 @@ class KanjiMenuItemPage extends React.Component {
 
   render() {
     return (
-      <KanjiMenuItem
+      <KatakanaMenuItem
         categories={this.props.categories}
-        mapCategory={mapCategoryToFa}
+        mapCategory={mapCategoryToKatakana}
       />
     );
   }
 }
 
-KanjiMenuItemPage.propTypes = {
+KatakanaMenuItemPage.propTypes = {
   categories: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
-    categories: state.kanjiCategories,
+    categories: state.katakanaCategories,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     actions: {
-      loadCategories: bindActionCreators(kanjiActions.loadCategories, dispatch),
+      loadCategories: bindActionCreators(
+        katakanaActions.loadCategories,
+        dispatch
+      ),
     },
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(KanjiMenuItemPage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(KatakanaMenuItemPage);
