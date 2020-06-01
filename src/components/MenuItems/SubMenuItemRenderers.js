@@ -1,7 +1,10 @@
 import React from "react";
 
 export function renderKanjiSubMenuItem(symbol) {
-  return <i className={symbol}></i>;
+  var spanStyle = {
+    color: "black",
+  };
+  return <span style={spanStyle} className={symbol}></span>;
 }
 
 export function renderKanaSubMenuItem(symbol) {

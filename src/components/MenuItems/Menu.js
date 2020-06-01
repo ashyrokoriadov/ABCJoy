@@ -39,6 +39,7 @@ class Menu extends React.Component {
           categories={this.props.kanjiCategories}
           renderSubMenuItem={renderKanjiSubmenuItem}
           abcTypeCss="kanji"
+          abcType="kanji"
           menuItemText="語"
           subMenuItemHeader="Kanji"
         />
@@ -46,6 +47,7 @@ class Menu extends React.Component {
           categories={this.props.hiraganaCategories}
           renderSubMenuItem={renderHiraganaSubmenuItem}
           abcTypeCss="hiragana"
+          abcType="hiragana"
           menuItemText="あ"
           subMenuItemHeader="Hiragana"
         />
@@ -53,6 +55,7 @@ class Menu extends React.Component {
           categories={this.props.katakanaCategories}
           renderSubMenuItem={renderKatakanaSubmenuItem}
           abcTypeCss="katakana"
+          abcType="katakana"
           menuItemText="ア"
           subMenuItemHeader="Katakana"
         />

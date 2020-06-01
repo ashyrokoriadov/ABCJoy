@@ -1,10 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom";
 
 const MenuItem = ({
   categories,
   renderSubMenuItem,
   abcTypeCss,
+  abcType,
   menuItemText,
   subMenuItemHeader,
 }) => {
@@ -20,13 +22,11 @@ const MenuItem = ({
         <div className={"sub-menu-items sub-menu-items-" + abcTypeCss}>
           {categories.map((category) => {
             return (
-              <div
-                key={category}
-                className="sliding-menu-item"
-                title={category}
-              >
-                {renderSubMenuItem(category)}
-              </div>
+              <NavLink key={category} to={"/" + abcType + "/" + category}>
+                <div className="sliding-menu-item" title={category}>
+                  {renderSubMenuItem(category)}
+                </div>
+              </NavLink>
             );
           })}
         </div>
@@ -42,6 +42,7 @@ MenuItem.propTypes = {
   categories: PropTypes.array.isRequired,
   renderSubMenuItem: PropTypes.func.isRequired,
   abcTypeCss: PropTypes.string.isRequired,
+  abcType: PropTypes.string.isRequired,
   menuItemText: PropTypes.string.isRequired,
   subMenuItemHeader: PropTypes.string.isRequired,
 };

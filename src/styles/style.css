@@ -9,6 +9,11 @@ body {
   font-family: Arial;
 }
 
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
 .container {
   display: grid;
   grid-template-columns: 70px auto;
