@@ -34,7 +34,7 @@ Quiz.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    quiz: state.quizReducer,
+    quiz: state.quiz,
   };
 }
 
