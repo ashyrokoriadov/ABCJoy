@@ -4,11 +4,9 @@ import { useParams } from "react-router-dom";
 
 export default function Content() {
   const { abc, type } = useParams();
-  console.log("abc: " + abc);
-  console.log("type: " + type);
   return (
     <div className="content">
-      <Quiz />
+      <Quiz abc={abc} type={type} quiz={[]} />
     </div>
   );
 }
