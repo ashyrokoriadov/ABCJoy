@@ -7,8 +7,8 @@ export function getCategories() {
     .catch(handleError);
 }
 
-export function getQuiz() {
-  return fetch(baseUrl + "?type=nouns&number=5")
+export function getQuiz(type) {
+  return fetch(baseUrl + "?type=" + type + "&number=5")
     .then(handleResponse)
     .catch(handleError);
 }

@@ -22,10 +22,10 @@ export function loadCategories() {
   };
 }
 
-export function loadQuiz() {
+export function loadQuiz(type) {
   return function (dispatch) {
     return kanjiApi
-      .getQuiz()
+      .getQuiz(type)
       .then((quiz) => {
         dispatch(loadQuizSuccess(quiz));
       })

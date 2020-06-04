@@ -10,12 +10,13 @@ function Quiz(props) {
   const { abc, type, actions, quiz } = props;
 
   useEffect(() => {
-    if (quiz == undefined || quiz.length == 0) {
-      actions.loadQuiz().catch((error) => {
-        alert("Loading quiz failed. " + error);
-      });
+    switch (abc) {
+      case "kanji":
+        actions.loadKanjiQuiz(type).catch((error) => {
+          alert("Loading quiz failed. " + error);
+        });
     }
-  }, [abc, type, quiz]);
+  }, [abc, type]);
 
   return (
     <div id="quiz">
@@ -41,7 +42,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: {
-      loadQuiz: bindActionCreators(kanjiActions.loadQuiz, dispatch),
+      loadKanjiQuiz: bindActionCreators(kanjiActions.loadQuiz, dispatch),
     },
   };
 }
