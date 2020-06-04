@@ -5,9 +5,11 @@ import PropTypes from "prop-types";
 import QuizStatistics from "./QuizStatistics";
 import Question from "./Question";
 import * as kanjiActions from "../../redux/actions/kanjiActions";
+import * as hiraganaActions from "../../redux/actions/hiraganaActions";
+import * as katakanaActions from "../../redux/actions/katakanaActions";
 
 function Quiz(props) {
-  const { abc, type, actions, quiz } = props;
+  const { abc, type, actions } = props;
 
   useEffect(() => {
     switch (abc) {
@@ -15,6 +17,17 @@ function Quiz(props) {
         actions.loadKanjiQuiz(type).catch((error) => {
           alert("Loading quiz failed. " + error);
         });
+        break;
+      case "hiragana":
+        actions.loadHiraganaQuiz(type).catch((error) => {
+          alert("Loading quiz failed. " + error);
+        });
+        break;
+      case "katakana":
+        actions.loadKatakanaQuiz(type).catch((error) => {
+          alert("Loading quiz failed. " + error);
+        });
+        break;
     }
   }, [abc, type]);
 
@@ -43,6 +56,8 @@ function mapDispatchToProps(dispatch) {
   return {
     actions: {
       loadKanjiQuiz: bindActionCreators(kanjiActions.loadQuiz, dispatch),
+      loadHiraganaQuiz: bindActionCreators(hiraganaActions.loadQuiz, dispatch),
+      loadKatakanaQuiz: bindActionCreators(katakanaActions.loadQuiz, dispatch),
     },
   };
 }
