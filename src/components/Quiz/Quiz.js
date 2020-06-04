@@ -4,31 +4,15 @@ import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 import QuizStatistics from "./QuizStatistics";
 import Question from "./Question";
-import * as kanjiActions from "../../redux/actions/kanjiActions";
-import * as hiraganaActions from "../../redux/actions/hiraganaActions";
-import * as katakanaActions from "../../redux/actions/katakanaActions";
+import * as quizActions from "../../redux/actions/quizActions";
 
 function Quiz(props) {
   const { abc, type, actions } = props;
 
   useEffect(() => {
-    switch (abc) {
-      case "kanji":
-        actions.loadKanjiQuiz(type).catch((error) => {
-          alert("Loading quiz failed. " + error);
-        });
-        break;
-      case "hiragana":
-        actions.loadHiraganaQuiz(type).catch((error) => {
-          alert("Loading quiz failed. " + error);
-        });
-        break;
-      case "katakana":
-        actions.loadKatakanaQuiz(type).catch((error) => {
-          alert("Loading quiz failed. " + error);
-        });
-        break;
-    }
+    actions.loadQuiz(abc, type).catch((error) => {
+      alert("Loading quiz failed. " + error);
+    });
   }, [abc, type]);
 
   return (
@@ -55,9 +39,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: {
-      loadKanjiQuiz: bindActionCreators(kanjiActions.loadQuiz, dispatch),
-      loadHiraganaQuiz: bindActionCreators(hiraganaActions.loadQuiz, dispatch),
-      loadKatakanaQuiz: bindActionCreators(katakanaActions.loadQuiz, dispatch),
+      loadQuiz: bindActionCreators(quizActions.loadQuiz, dispatch),
     },
   };
 }

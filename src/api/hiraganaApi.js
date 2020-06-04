@@ -6,9 +6,3 @@ export function getCategories() {
     .then(handleResponse)
     .catch(handleError);
 }
-
-export function getQuiz(type) {
-  return fetch(baseUrl + "?type=" + type + "&number=5")
-    .then(handleResponse)
-    .catch(handleError);
-}
