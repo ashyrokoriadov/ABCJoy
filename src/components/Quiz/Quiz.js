@@ -17,7 +17,7 @@ function Quiz(props) {
 
   return (
     <div id="quiz">
-      <Question quiz={props.quiz} />
+      <Question quiz={props.quiz} questionIndex={0} />
       <QuizStatistics />
     </div>
   );

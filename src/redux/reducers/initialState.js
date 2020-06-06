@@ -3,4 +3,5 @@ export default {
   katakanaCategories: [],
   hiraganaCategories: [],
   quiz: [],
+  questionIndex: 0,
 };

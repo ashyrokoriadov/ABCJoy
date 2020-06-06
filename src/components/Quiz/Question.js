@@ -1,15 +1,20 @@
 import React from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import * as questionActions from "../../redux/actions/questionActions";
 
-export default function Question(props) {
-  const { quiz } = props;
+export function Question(props) {
+  const { quiz, actions, questionIndex } = props;
+  const defaultAnswerOptionClass = "answer";
+
   let question = "";
   let correctAnswer = { latinName: "" };
   let answerOptions = [];
   let answerOptionsRefs = [];
-  let questionIndex = 0;
 
   if (props.quiz != undefined && props.quiz.length > 0) {
+    actions.setQuestionIndex(questionIndex);
     question = questionIndex + 1 + ". " + quiz[questionIndex].question;
     correctAnswer = quiz[questionIndex].correctAnswer;
     answerOptions = quiz[questionIndex].answerOptions;
@@ -22,6 +27,12 @@ export default function Question(props) {
     if (event.target.innerText != correctAnswer.latinName) {
       showCorrectAnswer();
     }
+
+    setTimeout(function () {
+      if (questionIndex == quiz.length - 1) return;
+      setCssCallsOnAnswerOption(defaultAnswerOptionClass);
+      actions.setQuestionIndex(questionIndex + 1);
+    }, 2000);
   }
 
   function showCorrectAnswer() {
@@ -32,6 +43,10 @@ export default function Question(props) {
     if (_correctAnswer != undefined) {
       _correctAnswer.current.className += " correct";
     }
+  }
+
+  function setCssCallsOnAnswerOption(className) {
+    answerOptionsRefs.forEach((x) => (x.current.className = className));
   }
 
   return (
@@ -46,7 +61,7 @@ export default function Question(props) {
               ref={answerOptionRef}
               key={answerOption.latinName}
               onClick={checkAnswer}
-              className="answer"
+              className={defaultAnswerOptionClass}
             >
               {answerOption.latinName}
             </div>
@@ -72,4 +87,25 @@ Question.propTypes = {
       ),
     }).isRequired
   ),
+  actions: PropTypes.object.isRequired,
+  questionIndex: PropTypes.number.isRequired,
 };
+
+function mapStateToProps(state) {
+  return {
+    questionIndex: state.questionIndex,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: {
+      setQuestionIndex: bindActionCreators(
+        questionActions.setQuestionIndex,
+        dispatch
+      ),
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Question);
