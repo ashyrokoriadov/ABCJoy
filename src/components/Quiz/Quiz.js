@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 import QuizStatistics from "./QuizStatistics";
-import Question from "./Question";
+import QuizQuestion from "./Question";
 import * as quizActions from "../../redux/actions/quizActions";
+import * as questionActions from "../../redux/actions/questionActions";
 
 function Quiz(props) {
   const { abc, type, actions } = props;
@@ -13,11 +14,12 @@ function Quiz(props) {
     actions.loadQuiz(abc, type).catch((error) => {
       alert("Loading quiz failed. " + error);
     });
+    actions.setQuestionIndex(0);
   }, [abc, type]);
 
   return (
     <div id="quiz">
-      <Question quiz={props.quiz} questionIndex={0} />
+      <QuizQuestion quiz={props.quiz} questionIndex={0} />
       <QuizStatistics />
     </div>
   );
@@ -40,6 +42,10 @@ function mapDispatchToProps(dispatch) {
   return {
     actions: {
       loadQuiz: bindActionCreators(quizActions.loadQuiz, dispatch),
+      setQuestionIndex: bindActionCreators(
+        questionActions.setQuestionIndex,
+        dispatch
+      ),
     },
   };
 }
