@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import * as messageActions from "../../redux/actions/messageActions";
 import { bindActionCreators } from "redux";
+import history from "./BrowserHistory";
 
 export function Message(props) {
   const { actions, shouldDisplay, text, messageType } = props;
@@ -11,7 +12,10 @@ export function Message(props) {
       <div className="text"> {text}</div>
       <div
         className={"button " + messageType}
-        onClick={() => actions.closeMessage()}
+        onClick={() => {
+          actions.closeMessage();
+          history.push("/");
+        }}
       >
         Zamknij
       </div>
@@ -26,6 +30,7 @@ Message.propTypes = {
   messageType: PropTypes.string.isRequired,
   shouldDisplay: PropTypes.bool.isRequired,
   actions: PropTypes.object.isRequired,
+  history: PropTypes.object,
 };
 
 function mapStateToProps(state) {

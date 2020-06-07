@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -17,15 +17,26 @@ export function Question(props) {
 
   if (props.quiz != undefined && props.quiz.length > 0) {
     actions.setQuestionIndex(questionIndex);
-    if (questionIndex == quiz.length) {
-      actions.showMessage("Quiz został zakończony", INFO);
-    }
+
+    useEffect(() => {
+      if (questionIndex == quiz.length) {
+        actions.showMessage("Quiz został zakończony", INFO);
+      }
+    });
 
     if (questionIndex < quiz.length) {
       question = questionIndex + 1 + ". " + quiz[questionIndex].question;
       correctAnswer = quiz[questionIndex].correctAnswer;
       answerOptions = quiz[questionIndex].answerOptions;
+    } else {
+      showLastQuestion();
     }
+  }
+
+  function showLastQuestion() {
+    question = quiz.length + ". " + quiz[quiz.length - 1].question;
+    correctAnswer = quiz[quiz.length - 1].correctAnswer;
+    answerOptions = quiz[quiz.length - 1].answerOptions;
   }
 
   function checkAnswer(event) {
