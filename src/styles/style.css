@@ -376,3 +376,35 @@ div#quiz {
   font-size: 1.5em;
   color: white;
 }
+
+.message {
+  position: absolute;
+  top: 25%;
+  left: 10%;
+  width: 80%;
+  height: 10%;
+  margin: 0 auto;
+  display: grid;
+  background: rgba(153, 254, 153, 1);
+  padding: 5px;
+}
+
+.message .text {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.message .button {
+  width: 100px;
+  height: 100%;
+  margin: 0 auto;
+  background-color: #a5aba5;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}

@@ -3,6 +3,8 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import * as questionActions from "../../redux/actions/questionActions";
+import * as messageActions from "../../redux/actions/messageActions";
+import { INFO } from "../common/MessageTypes";
 
 export function Question(props) {
   const { quiz, actions, questionIndex } = props;
@@ -15,9 +17,15 @@ export function Question(props) {
 
   if (props.quiz != undefined && props.quiz.length > 0) {
     actions.setQuestionIndex(questionIndex);
-    question = questionIndex + 1 + ". " + quiz[questionIndex].question;
-    correctAnswer = quiz[questionIndex].correctAnswer;
-    answerOptions = quiz[questionIndex].answerOptions;
+    if (questionIndex == quiz.length) {
+      actions.showMessage("Quiz został zakończony", INFO);
+    }
+
+    if (questionIndex < quiz.length) {
+      question = questionIndex + 1 + ". " + quiz[questionIndex].question;
+      correctAnswer = quiz[questionIndex].correctAnswer;
+      answerOptions = quiz[questionIndex].answerOptions;
+    }
   }
 
   function checkAnswer(event) {
@@ -29,10 +37,9 @@ export function Question(props) {
     }
 
     setTimeout(function () {
-      if (questionIndex == quiz.length - 1) return;
       setCssCallsOnAnswerOption(defaultAnswerOptionClass);
       actions.setQuestionIndex(questionIndex + 1);
-    }, 2000);
+    }, 1000);
   }
 
   function showCorrectAnswer() {
@@ -104,6 +111,7 @@ function mapDispatchToProps(dispatch) {
         questionActions.setQuestionIndex,
         dispatch
       ),
+      showMessage: bindActionCreators(messageActions.showMessage, dispatch),
     },
   };
 }
