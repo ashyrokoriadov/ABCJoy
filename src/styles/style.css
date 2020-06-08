@@ -292,7 +292,6 @@ div#quiz {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 402px;
   height: 66px;
   margin-bottom: 1px;
   border: 2px black solid;
@@ -307,7 +306,6 @@ div#quiz {
 }
 
 #answers {
-  width: 408px;
   font-size: 1.25em;
   font-weight: bold;
   margin-top: 1px;
@@ -341,7 +339,6 @@ div#quiz {
 }
 
 #statistics {
-  width: 404px;
   margin-top: 20px;
   font-weight: bold;
   display: grid;
@@ -350,6 +347,7 @@ div#quiz {
   grid-column-end: span 4;
   grid-row-start: 4;
   grid-row-end: span 3;
+  text-align: center;
 }
 
 .answer,
@@ -358,20 +356,18 @@ div#quiz {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 198px;
   height: 66px;
   margin: 1px;
   border: 2px black solid;
+  text-align: center;
 }
 
 .statistics-label {
-  width: 297px;
   font-size: 1.25em;
   color: black;
 }
 
 .statistics-value {
-  width: 99px;
   background-color: #a5aba5;
   font-size: 1.5em;
   color: white;
