@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import * as messageActions from "../../redux/actions/messageActions";
+import * as questionActions from "../../redux/actions/questionActions";
 import { bindActionCreators } from "redux";
 
 export function Message(props) {
@@ -13,6 +14,7 @@ export function Message(props) {
         className={"button " + messageType}
         onClick={() => {
           actions.closeMessage();
+          actions.setQuestionIndex(0);
           history.push("/");
         }}
       >
@@ -45,6 +47,10 @@ function mapDispatchToProps(dispatch) {
     actions: {
       closeMessage: bindActionCreators(messageActions.closeMessage, dispatch),
       showMessage: bindActionCreators(messageActions.showMessage, dispatch),
+      setQuestionIndex: bindActionCreators(
+        questionActions.setQuestionIndex,
+        dispatch
+      ),
     },
   };
 }
