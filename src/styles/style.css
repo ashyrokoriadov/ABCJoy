@@ -286,6 +286,7 @@ div#quiz {
   grid-row-start: 1;
   grid-row-end: 2;
   justify-self: end;
+  width: 35%;
 }
 
 #question {
