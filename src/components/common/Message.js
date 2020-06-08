@@ -3,10 +3,9 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import * as messageActions from "../../redux/actions/messageActions";
 import { bindActionCreators } from "redux";
-import history from "./BrowserHistory";
 
 export function Message(props) {
-  const { actions, shouldDisplay, text, messageType } = props;
+  const { actions, shouldDisplay, text, messageType, history } = props;
   return shouldDisplay ? (
     <div className="message">
       <div className="text"> {text}</div>
@@ -30,7 +29,7 @@ Message.propTypes = {
   messageType: PropTypes.string.isRequired,
   shouldDisplay: PropTypes.bool.isRequired,
   actions: PropTypes.object.isRequired,
-  history: PropTypes.object,
+  history: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {

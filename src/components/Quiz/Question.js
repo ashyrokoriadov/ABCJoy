@@ -21,6 +21,7 @@ export function Question(props) {
     useEffect(() => {
       if (questionIndex == quiz.length) {
         actions.showMessage("Quiz został zakończony", INFO);
+        actions.setQuestionIndex(0);
       }
     });
 
