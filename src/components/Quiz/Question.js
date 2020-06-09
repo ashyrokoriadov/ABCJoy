@@ -5,9 +5,11 @@ import PropTypes from "prop-types";
 import * as questionActions from "../../redux/actions/questionActions";
 import * as messageActions from "../../redux/actions/messageActions";
 import { INFO } from "../common/MessageTypes";
+import KanaQuestion from "./KanaQuestion";
+import KanjiQuestion from "./KanjiQuestion";
 
 export function Question(props) {
-  const { quiz, actions, questionIndex } = props;
+  const { quiz, actions, questionIndex, abc } = props;
   const defaultAnswerOptionClass = "answer";
 
   let question = "";
@@ -39,12 +41,12 @@ export function Question(props) {
     answerOptions = quiz[quiz.length - 1].answerOptions;
   }
 
-  function checkAnswer(event) {
+  function checkAnswerKana(event) {
     event.target.className +=
       event.target.innerText == correctAnswer.latinName ? " correct" : " wrong";
 
     if (event.target.innerText != correctAnswer.latinName) {
-      showCorrectAnswer();
+      showCorrectAnswerKana();
     }
 
     setTimeout(function () {
@@ -53,9 +55,33 @@ export function Question(props) {
     }, 1000);
   }
 
-  function showCorrectAnswer() {
+  function showCorrectAnswerKana() {
     let _correctAnswer = answerOptionsRefs.find(
       (x) => x.current.innerText == correctAnswer.latinName
+    );
+
+    if (_correctAnswer != undefined) {
+      _correctAnswer.current.className += " correct";
+    }
+  }
+
+  function checkAnswerKanji(event) {
+    event.target.className +=
+      event.target.innerText == correctAnswer.polish ? " correct" : " wrong";
+
+    if (event.target.innerText != correctAnswer.polish) {
+      showCorrectAnswerKanji();
+    }
+
+    setTimeout(function () {
+      setCssCallsOnAnswerOption(defaultAnswerOptionClass);
+      actions.setQuestionIndex(questionIndex + 1);
+    }, 1000);
+  }
+
+  function showCorrectAnswerKanji() {
+    let _correctAnswer = answerOptionsRefs.find(
+      (x) => x.current.innerText == correctAnswer.polish
     );
 
     if (_correctAnswer != undefined) {
@@ -67,27 +93,33 @@ export function Question(props) {
     answerOptionsRefs.forEach((x) => (x.current.className = className));
   }
 
-  return (
-    <>
-      <div id="question">{question}</div>
-      <div id="answers">
-        {answerOptions.map((answerOption) => {
-          let answerOptionRef = React.createRef();
-          answerOptionsRefs.push(answerOptionRef);
-          return (
-            <div
-              ref={answerOptionRef}
-              key={answerOption.latinName}
-              onClick={checkAnswer}
-              className={defaultAnswerOptionClass}
-            >
-              {answerOption.latinName}
-            </div>
-          );
-        })}
-      </div>
-    </>
-  );
+  function getControlToRender(abc) {
+    switch (abc) {
+      case "kanji":
+        return (
+          <KanjiQuestion
+            question={question}
+            answerOptions={answerOptions}
+            answerOptionsRefs={answerOptionsRefs}
+            checkAnswer={checkAnswerKanji}
+            defaultAnswerOptionClass={defaultAnswerOptionClass}
+            correctAnswer={correctAnswer}
+          />
+        );
+      default:
+        return (
+          <KanaQuestion
+            question={question}
+            answerOptions={answerOptions}
+            answerOptionsRefs={answerOptionsRefs}
+            checkAnswer={checkAnswerKana}
+            defaultAnswerOptionClass={defaultAnswerOptionClass}
+          />
+        );
+    }
+  }
+
+  return getControlToRender(abc);
 }
 
 Question.propTypes = {
@@ -107,6 +139,7 @@ Question.propTypes = {
   ),
   actions: PropTypes.object.isRequired,
   questionIndex: PropTypes.number.isRequired,
+  abc: PropTypes.string.isRequired,
 };
 
 function mapStateToProps(state) {
