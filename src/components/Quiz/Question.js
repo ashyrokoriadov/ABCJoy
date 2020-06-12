@@ -19,9 +19,8 @@ export function Question(props) {
   let isAnswered = false;
 
   if (props.quiz != undefined && props.quiz.length > 0) {
-    actions.setQuestionIndex(questionIndex);
-
     useEffect(() => {
+      actions.setQuestionIndex(questionIndex);
       if (questionIndex == quiz.length) {
         actions.showMessage("Quiz został zakończony", INFO);
       }
