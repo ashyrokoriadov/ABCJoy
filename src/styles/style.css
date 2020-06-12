@@ -131,6 +131,7 @@ div#red-circle {
 }
 
 p.menu-item-text,
+p.statistics-value-text,
 p.sub-menu-item-text {
   font-size: 1.5em;
   font-weight: bold;
@@ -154,11 +155,8 @@ p.sub-menu-item-text {
 }
 
 a,
+a:hover,
 a:visited {
-  color: white;
-}
-
-a:hover {
   color: black;
 }
 

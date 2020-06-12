@@ -4,11 +4,20 @@ import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 import QuizStatistics from "./QuizStatistics";
 import QuizQuestion from "./Question";
+import {
+  mapCategoryToFa,
+  mapCategoryToKatakana,
+  mapCategoryToHiragana,
+} from "../MenuItems/CategoryMappers";
+import { renderKanjiSubMenuItem as renderKanji } from "../MenuItems/SubMenuItemRenderers";
+import { renderKana } from "../common/renderers/KanaRenderer";
 import * as quizActions from "../../redux/actions/quizActions";
 import * as questionActions from "../../redux/actions/questionActions";
+import * as abcTypes from "../common/constants/abcTypes";
 
 function Quiz(props) {
   const { abc, type, actions } = props;
+  let quizType = setQuizType(abc, type);
 
   useEffect(() => {
     actions.loadQuiz(abc, type).catch((error) => {
@@ -20,9 +29,22 @@ function Quiz(props) {
   return (
     <div id="quiz">
       <QuizQuestion quiz={props.quiz} abc={abc} questionIndex={0} />
-      <QuizStatistics />
+      <QuizStatistics type={quizType} />
     </div>
   );
+}
+
+function setQuizType(abc, type) {
+  switch (abc.toLowerCase()) {
+    case abcTypes.HIRAGANA.toLowerCase():
+      return renderKana(mapCategoryToHiragana(type), "statistics-value-text");
+    case abcTypes.KATAKANA.toLowerCase():
+      return renderKana(mapCategoryToKatakana(type), "statistics-value-text");
+    case abcTypes.KANJI.toLowerCase():
+      return renderKanji(mapCategoryToFa(type));
+    default:
+      return "";
+  }
 }
 
 Quiz.propTypes = {
