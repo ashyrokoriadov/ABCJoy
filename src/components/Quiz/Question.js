@@ -16,6 +16,7 @@ export function Question(props) {
   let correctAnswer = { latinName: "" };
   let answerOptions = [];
   let answerOptionsRefs = [];
+  let isAnswered = false;
 
   if (props.quiz != undefined && props.quiz.length > 0) {
     actions.setQuestionIndex(questionIndex);
@@ -42,12 +43,18 @@ export function Question(props) {
   }
 
   function checkAnswerKana(event) {
+    if (isAnswered) {
+      return;
+    }
+
     event.target.className +=
       event.target.innerText == correctAnswer.latinName ? " correct" : " wrong";
 
     if (event.target.innerText != correctAnswer.latinName) {
       showCorrectAnswerKana();
     }
+
+    isAnswered = true;
 
     setTimeout(function () {
       setCssCallsOnAnswerOption(defaultAnswerOptionClass);
@@ -66,12 +73,18 @@ export function Question(props) {
   }
 
   function checkAnswerKanji(event) {
+    if (isAnswered) {
+      return;
+    }
+
     event.target.className +=
       event.target.innerText == correctAnswer.polish ? " correct" : " wrong";
 
     if (event.target.innerText != correctAnswer.polish) {
       showCorrectAnswerKanji();
     }
+
+    isAnswered = true;
 
     setTimeout(function () {
       setCssCallsOnAnswerOption(defaultAnswerOptionClass);
