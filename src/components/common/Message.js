@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import * as messageActions from "../../redux/actions/messageActions";
 import * as questionActions from "../../redux/actions/questionActions";
+import * as correctAnswersActions from "../../redux/actions/correctAnswerActions";
 import { bindActionCreators } from "redux";
 
 export function Message(props) {
@@ -15,6 +16,7 @@ export function Message(props) {
         onClick={() => {
           actions.closeMessage();
           actions.setQuestionIndex(0);
+          actions.resetCorrectAnswersCount();
           history.push("/");
         }}
       >
@@ -49,6 +51,10 @@ function mapDispatchToProps(dispatch) {
       showMessage: bindActionCreators(messageActions.showMessage, dispatch),
       setQuestionIndex: bindActionCreators(
         questionActions.setQuestionIndex,
+        dispatch
+      ),
+      resetCorrectAnswersCount: bindActionCreators(
+        correctAnswersActions.resetCorrectAnswersCount,
         dispatch
       ),
     },

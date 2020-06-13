@@ -4,12 +4,13 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import * as questionActions from "../../redux/actions/questionActions";
 import * as messageActions from "../../redux/actions/messageActions";
+import * as correctAnswersActions from "../../redux/actions/correctAnswerActions";
 import { INFO } from "../common/MessageTypes";
 import KanaQuestion from "./KanaQuestion";
 import KanjiQuestion from "./KanjiQuestion";
 
 export function Question(props) {
-  const { quiz, actions, questionIndex, abc } = props;
+  const { quiz, actions, questionIndex, abc, correctAnswersCount } = props;
   const defaultAnswerOptionClass = "answer";
 
   let question = "";
@@ -17,6 +18,7 @@ export function Question(props) {
   let answerOptions = [];
   let answerOptionsRefs = [];
   let isAnswered = false;
+  let isCorrectAnswer = false;
 
   if (props.quiz != undefined && props.quiz.length > 0) {
     useEffect(() => {
@@ -53,11 +55,15 @@ export function Question(props) {
       showCorrectAnswerKana();
     }
 
+    isCorrectAnswer = event.target.innerText == correctAnswer.latinName;
     isAnswered = true;
 
     setTimeout(function () {
       setCssCallsOnAnswerOption(defaultAnswerOptionClass);
       actions.setQuestionIndex(questionIndex + 1);
+      if (isCorrectAnswer) {
+        actions.setCorrectAnswersCount(correctAnswersCount + 1);
+      }
     }, 1000);
   }
 
@@ -83,11 +89,15 @@ export function Question(props) {
       showCorrectAnswerKanji();
     }
 
+    isCorrectAnswer = event.target.innerText == correctAnswer.polish;
     isAnswered = true;
 
     setTimeout(function () {
       setCssCallsOnAnswerOption(defaultAnswerOptionClass);
       actions.setQuestionIndex(questionIndex + 1);
+      if (isCorrectAnswer) {
+        actions.setCorrectAnswersCount(correctAnswersCount + 1);
+      }
     }, 1000);
   }
 
@@ -152,11 +162,13 @@ Question.propTypes = {
   actions: PropTypes.object.isRequired,
   questionIndex: PropTypes.number.isRequired,
   abc: PropTypes.string.isRequired,
+  correctAnswersCount: PropTypes.number,
 };
 
 function mapStateToProps(state) {
   return {
     questionIndex: state.questionIndex,
+    correctAnswersCount: state.correctAnswerCount,
   };
 }
 
@@ -168,6 +180,10 @@ function mapDispatchToProps(dispatch) {
         dispatch
       ),
       showMessage: bindActionCreators(messageActions.showMessage, dispatch),
+      setCorrectAnswersCount: bindActionCreators(
+        correctAnswersActions.saveCorrectAnswersCount,
+        dispatch
+      ),
     },
   };
 }

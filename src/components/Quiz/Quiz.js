@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
-import QuizStatistics from "./QuizStatistics";
+import QuizStatisticsView from "./QuizStatistics";
 import QuizQuestion from "./Question";
 import {
   mapCategoryToFa,
@@ -28,8 +28,13 @@ function Quiz(props) {
 
   return (
     <div id="quiz">
-      <QuizQuestion quiz={props.quiz} abc={abc} questionIndex={0} />
-      <QuizStatistics type={quizType} />
+      <QuizQuestion
+        quiz={props.quiz}
+        abc={abc}
+        questionIndex={0}
+        correctAnswersCount={0}
+      />
+      <QuizStatisticsView type={quizType} />
     </div>
   );
 }
