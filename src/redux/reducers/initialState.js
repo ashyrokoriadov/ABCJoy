@@ -11,4 +11,5 @@ export default {
     messageType: INFO.toLowerCase(),
     shouldDisplay: false,
   },
+  correctAnswerCount: 0,
 };
