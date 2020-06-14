@@ -207,6 +207,16 @@ div.sliding-menu:hover {
   left: 70px;
 }
 
+div.sliding-menu-static {
+  position: absolute;
+  left: 70px;
+  width: 150px;
+  display: grid;
+  grid-template-columns: 150px;
+  grid-template-rows: 100%;
+  z-index: 0;
+}
+
 div.sliding-menu-kanji {
   top: 71px;
 }
@@ -219,9 +229,17 @@ div.sliding-menu-katakana {
   top: 212px;
 }
 
+div.sliding-menu-settings {
+  top: 282px;
+}
+
 div.sub-menu-items {
   width: 210px;
   display: grid;
+}
+
+div.sub-menu-items-empty {
+  width: 0px;
 }
 
 div.sub-menu-items-kanji,
@@ -250,7 +268,9 @@ div.sliding-menu-item {
 }
 
 div.sliding-menu-item:hover,
-.answer:hover {
+.answer:hover,
+.settings-ok:hover,
+.settings-cancel:hover {
   background-color: #e5e7e5;
 }
 
@@ -351,25 +371,52 @@ div#quiz {
 
 .answer,
 .statistics-label,
-.statistics-value {
-  display: flex;
+.statistics-value,
+.settings-label,
+.settings-value,
+.settings-ok,
+.settings-cancel {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   height: 66px;
   margin: 1px;
   border: 2px black solid;
+  padding: 2px;
   text-align: center;
 }
 
-.statistics-label {
+.statistics-label,
+.settings-label,
+.settings-ok,
+.settings-cancel {
   font-size: 1.25em;
   color: black;
 }
 
-.statistics-value {
+.statistics-value,
+.settings-value,
+.settings-ok:active,
+.settings-cancel:active {
   background-color: #a5aba5;
   font-size: 1.5em;
   color: white;
+}
+
+.settings-label {
+  grid-column-start: 1;
+  grid-column-end: span 3;
+}
+
+.settings-value,
+.settings-cancel {
+  grid-column-start: 4;
+  grid-column-end: 5;
+}
+
+.settings-ok {
+  grid-column-start: 3;
+  grid-column-end: 4;
 }
 
 .message {
@@ -402,4 +449,43 @@ div#quiz {
   align-items: center;
   justify-content: center;
   font-weight: bold;
+}
+
+#settings {
+  margin-top: 20px;
+  margin-right: 40px;
+  width: 35%;
+  height: 225px;
+  font-weight: bold;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  justify-self: end;
+  text-align: center;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  height: 66px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input {
+  text-align: center;
+  font-size: 1.5em;
+  font-family: Arial;
+  font-weight: bold;
+}
+
+input:focus {
+  background: none;
+  color: black;
 }

@@ -7,6 +7,7 @@ import * as hiraganaActions from "../../redux/actions/hiraganaActions";
 import PropTypes from "prop-types";
 import JapanFlag from "../JapanFlag";
 import MenuItem from "./MenuItem";
+import SettingsMenuItem from "./SettingsMenuItem";
 import {
   renderKanaSubMenuItem,
   renderKanjiSubMenuItem,
@@ -59,6 +60,7 @@ class Menu extends React.Component {
           menuItemText="ア"
           subMenuItemHeader="Katakana"
         />
+        <SettingsMenuItem />
       </div>
     );
   }
