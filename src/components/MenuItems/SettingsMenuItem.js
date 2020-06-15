@@ -10,7 +10,6 @@ const SettingsMenuItem = () => {
         </div>
       </NavLink>
       <div className="sliding-menu-static sliding-menu-settings">
-        <div className="sub-menu-items-empty"></div>
         <div className="sliding-menu-header">
           <span className="sub-menu-item-header">Ustawienia</span>
         </div>
