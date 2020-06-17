@@ -71,7 +71,6 @@ const Settings = (props) => {
       >
         OK
       </div>
-      <div className="settings-cancel">Anuluj</div>
     </div>
   );
 };

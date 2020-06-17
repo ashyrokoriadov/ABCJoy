@@ -374,8 +374,7 @@ div#quiz {
 .statistics-value,
 .settings-label,
 .settings-value,
-.settings-ok,
-.settings-cancel {
+.settings-ok {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -388,16 +387,14 @@ div#quiz {
 
 .statistics-label,
 .settings-label,
-.settings-ok,
-.settings-cancel {
+.settings-ok {
   font-size: 1.25em;
   color: black;
 }
 
 .statistics-value,
 .settings-value,
-.settings-ok:active,
-.settings-cancel:active {
+.settings-ok:active {
   background-color: #a5aba5;
   font-size: 1.5em;
   color: white;
@@ -409,14 +406,9 @@ div#quiz {
 }
 
 .settings-value,
-.settings-cancel {
+.settings-ok {
   grid-column-start: 4;
   grid-column-end: 5;
-}
-
-.settings-ok {
-  grid-column-start: 3;
-  grid-column-end: 4;
 }
 
 .message {
