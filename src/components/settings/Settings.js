@@ -7,14 +7,14 @@ const Settings = () => {
       <input
         type="number"
         className="settings-value"
-        name="questionCount"
+        name="questionsCount"
         placeholder="10"
       />
       <div className="settings-label">Czas między pytaniamy, sek.</div>
       <input
         type="number"
         className="settings-value"
-        name="timeBetweenQuestion"
+        name="timeBetweenQuestions"
         placeholder="2"
       />
       <div className="settings-ok">OK</div>

@@ -1,10 +1,10 @@
 import React from "react";
-import Settings from "./settings/Settings";
+import SettingsModel from "./settings/SettingsModel";
 
 const SettingsContent = () => {
   return (
     <div className="content">
-      <Settings />
+      <SettingsModel />
     </div>
   );
 };

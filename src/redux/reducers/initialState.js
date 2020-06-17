@@ -12,4 +12,8 @@ export default {
     shouldDisplay: false,
   },
   correctAnswerCount: 0,
+  settings: {
+    questionsCount: 3,
+    timeBetweenQuestions: 2
+  }
 };

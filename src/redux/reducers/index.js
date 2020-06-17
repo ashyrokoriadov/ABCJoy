@@ -6,6 +6,7 @@ import quiz from "./quizReducer";
 import questionIndex from "./questionReducer";
 import message from "./messageReducer";
 import correctAnswerCount from "./correctAnswerReducer";
+import settings from "./settingsReducer";
 
 const rootReducer = combineReducers({
   kanjiCategories,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   questionIndex,
   message,
   correctAnswerCount,
+  settings
 });
 
 export default rootReducer;
