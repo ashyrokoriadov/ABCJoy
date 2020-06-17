@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as settingsAction from "../../redux/actions/settingsActions";
+import * as messageActions from "../../redux/actions/messageActions";
+import { INFO } from "../common/MessageTypes";
 
 const SettingsModel = (props) => {
   const { questionsCount, timeBetweenQuestions, actions } = props;
@@ -19,6 +21,7 @@ const SettingsModel = (props) => {
       questionsCount: Number(questionsCount),
       timeBetweenQuestions: Number(timeBetweenQuestions),
     });
+    actions.showMessage("Ustawienia zostały zapisane", INFO);
   }
 
   return (
@@ -48,6 +51,7 @@ function mapDispatchToProps(dispatch) {
     actions: {
       loadSettings: bindActionCreators(settingsAction.loadSettings, dispatch),
       saveSettings: bindActionCreators(settingsAction.saveSettings, dispatch),
+      showMessage: bindActionCreators(messageActions.showMessage, dispatch),
     },
   };
 }
