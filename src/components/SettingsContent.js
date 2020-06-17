@@ -4,7 +4,7 @@ import SettingsModel from "./settings/SettingsModel";
 const SettingsContent = () => {
   return (
     <div className="content">
-      <SettingsModel />
+      <SettingsModel questionsCount={0} timeBetweenQuestions={0}/>
     </div>
   );
 };

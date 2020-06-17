@@ -16,6 +16,6 @@ function dispatchSaveSettings(settings) {
 
 export function saveSettings(settings) {
   return function (dispatch) {
-    return dispatch(requestCloseMaessage(settings));
+    return dispatch(dispatchSaveSettings(settings));
   };
 }
