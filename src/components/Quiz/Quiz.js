@@ -13,18 +13,23 @@ import { renderKanjiSubMenuItem as renderKanji } from "../MenuItems/SubMenuItemR
 import { renderKana } from "../common/renderers/KanaRenderer";
 import * as quizActions from "../../redux/actions/quizActions";
 import * as questionActions from "../../redux/actions/questionActions";
+import * as settingsAction from "../../redux/actions/settingsActions";
 import * as abcTypes from "../common/constants/abcTypes";
 
 function Quiz(props) {
-  const { abc, type, actions } = props;
+  const { abc, type, actions, questionsCount, timeBetweenQuestions } = props;
   let quizType = setQuizType(abc, type);
 
   useEffect(() => {
-    actions.loadQuiz(abc, type).catch((error) => {
+    actions.loadQuiz(abc, type, questionsCount).catch((error) => {
       alert("Loading quiz failed. " + error);
     });
     actions.setQuestionIndex(0);
-  }, [abc, type]);
+  }, [abc, type, questionsCount]);
+
+  useEffect(() => {
+    actions.loadSettings();
+  }, [questionsCount, timeBetweenQuestions]);
 
   return (
     <div id="quiz">
@@ -34,7 +39,7 @@ function Quiz(props) {
         questionIndex={0}
         correctAnswersCount={0}
       />
-      <QuizStatisticsView type={quizType} />
+      <QuizStatisticsView type={quizType} questionsCount={questionsCount} />
     </div>
   );
 }
@@ -56,12 +61,16 @@ Quiz.propTypes = {
   quiz: PropTypes.array.isRequired,
   abc: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+  questionsCount: PropTypes.number,
+  timeBetweenQuestions: PropTypes.number,
   actions: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
     quiz: state.quiz,
+    questionsCount: state.settings.questionsCount,
+    timeBetweenQuestions: state.settings.timeBetweenQuestions,
   };
 }
 
@@ -73,6 +82,7 @@ function mapDispatchToProps(dispatch) {
         questionActions.setQuestionIndex,
         dispatch
       ),
+      loadSettings: bindActionCreators(settingsAction.loadSettings, dispatch),
     },
   };
 }
