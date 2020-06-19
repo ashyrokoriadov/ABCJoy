@@ -14,6 +14,10 @@ export default {
   correctAnswerCount: 0,
   settings: {
     questionsCount: 3,
-    timeBetweenQuestions: 2
-  }
+    timeBetweenQuestions: 2,
+  },
+  quizTimer: {
+    isActive: false,
+    value: 0,
+  },
 };
