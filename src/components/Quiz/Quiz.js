@@ -38,6 +38,7 @@ function Quiz(props) {
         abc={abc}
         questionIndex={0}
         correctAnswersCount={0}
+        timeBetweenQuestions={timeBetweenQuestions}
       />
       <QuizStatisticsView type={quizType} questionsCount={questionsCount} />
     </div>

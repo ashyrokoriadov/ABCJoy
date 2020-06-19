@@ -10,7 +10,14 @@ import KanaQuestion from "./KanaQuestion";
 import KanjiQuestion from "./KanjiQuestion";
 
 export function Question(props) {
-  const { quiz, actions, questionIndex, abc, correctAnswersCount } = props;
+  const {
+    quiz,
+    actions,
+    questionIndex,
+    abc,
+    correctAnswersCount,
+    timeBetweenQuestions,
+  } = props;
   const defaultAnswerOptionClass = "answer";
 
   let question = "";
@@ -64,7 +71,7 @@ export function Question(props) {
       if (isCorrectAnswer) {
         actions.setCorrectAnswersCount(correctAnswersCount + 1);
       }
-    }, 1000);
+    }, timeBetweenQuestions * 1000);
   }
 
   function showCorrectAnswerKana() {
@@ -98,7 +105,7 @@ export function Question(props) {
       if (isCorrectAnswer) {
         actions.setCorrectAnswersCount(correctAnswersCount + 1);
       }
-    }, 1000);
+    }, timeBetweenQuestions * 1000);
   }
 
   function showCorrectAnswerKanji() {
@@ -163,6 +170,7 @@ Question.propTypes = {
   questionIndex: PropTypes.number.isRequired,
   abc: PropTypes.string.isRequired,
   correctAnswersCount: PropTypes.number,
+  timeBetweenQuestions: PropTypes.number,
 };
 
 function mapStateToProps(state) {
