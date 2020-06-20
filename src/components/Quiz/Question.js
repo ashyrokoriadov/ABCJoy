@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import * as questionActions from "../../redux/actions/questionActions";
 import * as messageActions from "../../redux/actions/messageActions";
 import * as correctAnswersActions from "../../redux/actions/correctAnswerActions";
+import * as timerActions from "../../redux/actions/quizTimerActions";
 import { INFO } from "../common/MessageTypes";
 import KanaQuestion from "./KanaQuestion";
 import KanjiQuestion from "./KanjiQuestion";
@@ -31,6 +32,7 @@ export function Question(props) {
     useEffect(() => {
       actions.setQuestionIndex(questionIndex);
       if (questionIndex == quiz.length) {
+        actions.pauseTimer();
         actions.showMessage("Quiz został zakończony", INFO);
       }
     });
@@ -192,6 +194,7 @@ function mapDispatchToProps(dispatch) {
         correctAnswersActions.saveCorrectAnswersCount,
         dispatch
       ),
+      pauseTimer: bindActionCreators(timerActions.pauseTimer, dispatch),
     },
   };
 }

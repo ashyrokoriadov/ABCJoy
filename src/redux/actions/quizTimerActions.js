@@ -4,8 +4,8 @@ function dispatchStartTimer() {
   return { type: types.START_QUIZ_TIMER };
 }
 
-function dispatchPauseTimer(currentValue) {
-  return { type: types.PAUSE_QUIZ_TIMER, value: currentValue };
+function dispatchPauseTimer() {
+  return { type: types.PAUSE_QUIZ_TIMER };
 }
 
 function dispatchResetTimer() {
@@ -22,9 +22,9 @@ export function startTimer() {
   };
 }
 
-export function pauseTimer(currentValue) {
+export function pauseTimer() {
   return function (dispatch) {
-    return dispatch(dispatchPauseTimer(currentValue));
+    return dispatch(dispatchPauseTimer());
   };
 }
 

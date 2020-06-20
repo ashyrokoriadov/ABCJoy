@@ -15,8 +15,6 @@ const SettingsModel = (props) => {
   }, [questionsCount, timeBetweenQuestions]);
 
   function handleOK(questionsCount, timeBetweenQuestions) {
-    console.log("questionsCount: " + questionsCount);
-    console.log("timeBetweenQuestions: " + timeBetweenQuestions);
     actions.saveSettings({
       questionsCount: Number(questionsCount),
       timeBetweenQuestions: Number(timeBetweenQuestions),

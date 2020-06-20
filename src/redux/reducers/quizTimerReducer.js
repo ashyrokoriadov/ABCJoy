@@ -14,7 +14,7 @@ export default function settingsReducer(
     case types.PAUSE_QUIZ_TIMER:
       return {
         isActive: false,
-        value: action.value,
+        value: state.value,
       };
     case types.INCREMENT_QUIZ_TIMER:
       return {
