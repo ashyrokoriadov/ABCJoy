@@ -13,6 +13,7 @@ export function loadCategoriesSuccess(
   };
 }
 
+/*
 export function loadCategories() {
   return function (dispatch) {
     return kanjiApi
@@ -25,3 +26,4 @@ export function loadCategories() {
       });
   };
 }
+*/
