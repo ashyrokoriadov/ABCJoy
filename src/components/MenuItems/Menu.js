@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as kanjiActions from "../../redux/actions/kanjiActions";
+//import * as kanjiActions from "../../redux/actions/kanjiActions";
+import * as kanjiActions from "../../redux/kanjiCategories/actions";
 import * as katakanaActions from "../../redux/actions/katakanaActions";
 import * as hiraganaActions from "../../redux/actions/hiraganaActions";
 import PropTypes from "prop-types";
@@ -22,14 +23,14 @@ class Menu extends React.Component {
   componentDidMount() {
     const {
       kanjiCategories,
-      katakanaCategories,
-      hiraganaCategories,
+      //katakanaCategories,
+      //hiraganaCategories,
       actions,
     } = this.props;
 
     loadCategories(kanjiCategories, actions.loadKanjiCategories);
-    loadCategories(katakanaCategories, actions.loadKatakanaCategories);
-    loadCategories(hiraganaCategories, actions.loadHiraganaCategories);
+    //loadCategories(katakanaCategories, actions.loadKatakanaCategories);
+    //loadCategories(hiraganaCategories, actions.loadHiraganaCategories);
   }
 
   render() {
@@ -44,6 +45,7 @@ class Menu extends React.Component {
           menuItemText="語"
           subMenuItemHeader="Kanji"
         />
+        {/*
         <MenuItem
           categories={this.props.hiraganaCategories}
           renderSubMenuItem={renderHiraganaSubmenuItem}
@@ -61,6 +63,7 @@ class Menu extends React.Component {
           subMenuItemHeader="Katakana"
         />
         <SettingsMenuItem />
+        */}
       </div>
     );
   }
@@ -68,8 +71,8 @@ class Menu extends React.Component {
 
 Menu.propTypes = {
   kanjiCategories: PropTypes.array.isRequired,
-  katakanaCategories: PropTypes.array.isRequired,
-  hiraganaCategories: PropTypes.array.isRequired,
+  //katakanaCategories: PropTypes.array.isRequired,
+  //hiraganaCategories: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
 };
 
@@ -86,6 +89,7 @@ function renderKanjiSubmenuItem(category) {
   return renderKanjiSubMenuItem(symbol);
 }
 
+/*
 function renderKatakanaSubmenuItem(category) {
   let symbol = mapCategoryToKatakana(category);
   return renderKanaSubMenuItem(symbol);
@@ -95,12 +99,13 @@ function renderHiraganaSubmenuItem(category) {
   let symbol = mapCategoryToHiragana(category);
   return renderKanaSubMenuItem(symbol);
 }
+*/
 
 function mapStateToProps(state) {
   return {
     kanjiCategories: state.kanjiCategories,
-    katakanaCategories: state.katakanaCategories,
-    hiraganaCategories: state.hiraganaCategories,
+    //katakanaCategories: state.katakanaCategories,
+    //hiraganaCategories: state.hiraganaCategories,
   };
 }
 
@@ -111,6 +116,7 @@ function mapDispatchToProps(dispatch) {
         kanjiActions.loadCategories,
         dispatch
       ),
+      /*
       loadKatakanaCategories: bindActionCreators(
         katakanaActions.loadCategories,
         dispatch
@@ -118,7 +124,7 @@ function mapDispatchToProps(dispatch) {
       loadHiraganaCategories: bindActionCreators(
         hiraganaActions.loadCategories,
         dispatch
-      ),
+      ),*/
     },
   };
 }

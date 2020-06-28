@@ -2,6 +2,7 @@ import { INFO } from "../../components/common/MessageTypes";
 
 export default {
   kanjiCategories: [],
+  /*
   katakanaCategories: [],
   hiraganaCategories: [],
   quiz: [],
@@ -20,4 +21,5 @@ export default {
     isActive: false,
     value: 0,
   },
+  */
 };
