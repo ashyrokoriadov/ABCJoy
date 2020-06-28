@@ -1,5 +1,12 @@
-export async function handleResponse(response) {
-  if (response.ok) return response.json();
+import { HttpResponse } from "../models/api/HttpResponse";
+
+export async function handleResponse(
+  response: HttpResponse
+): Promise<string[]> {
+  if (response.ok) {
+    var test = response.json();
+    return test;
+  }
   if (response.status === 400) {
     const error = await response.text();
     throw new Error(error);

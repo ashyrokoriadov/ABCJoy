@@ -10,8 +10,15 @@ export const loadCategories = (): ThunkAction<
   unknown,
   Action
 > => async (dispatch) => {
-  const categories = await kanjiApi.getCategories().catch((error) => {
-    throw error;
-  });
-  dispatch(loadCategoriesSuccess(categories));
+  return await kanjiApi
+    .getCategories()
+    .then((categoriesResponse) => {
+      const categories = categoriesResponse as string[];
+      if (categories != undefined) {
+        dispatch(loadCategoriesSuccess(categories));
+      }
+    })
+    .catch((error) => {
+      throw error;
+    });
 };
