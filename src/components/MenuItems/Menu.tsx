@@ -2,6 +2,7 @@ import React from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { bindActionCreators } from "redux";
 import { RootState } from "../../redux/reducers";
+import { MenuProps } from "../../models/MenuProps";
 //import * as kanjiActions from "../../redux/actions/kanjiActions";
 import * as kanjiActions from "../../redux/kanjiCategories/actions";
 //import * as katakanaActions from "../../redux/actions/katakanaActions";
@@ -19,11 +20,6 @@ import {
   //mapCategoryToKatakana,
   //mapCategoryToHiragana,
 } from "./CategoryMappers";
-
-export interface MenuProps {
-  kanjiCategories?: string[];
-  actions?: object;
-}
 
 const mapState = (state: RootState) => ({
   kanjiCategories: state.kanjiCategories,
