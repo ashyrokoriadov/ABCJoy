@@ -1,5 +1,5 @@
 const baseUrl = process.env.API_URL + "/";
-import { handleResponse, handleError } from "./apiUtils";
+import { handleResponse, handleError } from "./ApiUtilities";
 
 export function getQuiz(abc, type, questionsCount) {
   const defaultNumber = 3;

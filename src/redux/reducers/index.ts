@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-//import kanjiCategories from "./kanjiCategoryReducer";
 import kanjiCategoriesReducer from "../kanjiCategories/reducers";
+import hiraganaCategoriesReducer from "../hiraganaCategories/reducers";
+import katakanaCategoriesReducer from "../katakanaCategories/reducers";
 /*import katakanaCategories from "./katakanaCategoryReducer";
-import hiraganaCategories from "./hiraganaCategoryReducer";
 import quiz from "./quizReducer";
 import questionIndex from "./questionReducer";
 import message from "./messageReducer";
@@ -11,9 +11,10 @@ import settings from "./settingsReducer";
 import quizTimer from "./quizTimerReducer";*/
 
 const rootReducer = combineReducers({
-  kanjiCategories: kanjiCategoriesReducer /*
-  katakanaCategories,
-  hiraganaCategories,
+  kanjiCategories: kanjiCategoriesReducer,
+  hiraganaCategories: hiraganaCategoriesReducer,
+  katakanaCategories: katakanaCategoriesReducer /*
+
   quiz,
   questionIndex,
   message,

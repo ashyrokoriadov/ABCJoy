@@ -11,7 +11,7 @@ export const loadCategories = (): ThunkAction<
   unknown,
   Action
 > => async (dispatch) => {
-  return await LettersApi.getCategories(LetterType.KANJI)
+  return await LettersApi.getCategories(LetterType.HIRAGANA)
     .then((categoriesResponse) => {
       const categories = categoriesResponse as string[];
       if (categories != undefined) {
