@@ -6,8 +6,8 @@ import PropTypes from "prop-types";
 const SettingsContent = (props) => {
   return (
     <div className="content">
-      <SettingsModel questionsCount={0} timeBetweenQuestions={0} />
-      <MessagePanel history={props.history} />
+      <SettingsModel />
+      {/*<MessagePanel history={props.history} />*/}
     </div>
   );
 };
