@@ -9,7 +9,7 @@ import {
   mapCategoryToKatakana,
   mapCategoryToHiragana,
 } from "../MenuItems/CategoryMappers";
-import { renderKanjiSubMenuItem as renderKanji } from "../MenuItems/SubMenuItemRenderers";
+import { renderKanjiSubMenuItem as renderKanji } from "../common/renderers/LetterRenderer";
 import { renderKana } from "../common/renderers/KanaRenderer";
 import * as quizActions from "../../redux/actions/quizActions";
 import * as questionActions from "../../redux/actions/questionActions";

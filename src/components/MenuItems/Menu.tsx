@@ -2,21 +2,14 @@ import React from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { bindActionCreators } from "redux";
 import { RootState } from "../../redux/reducers";
+import { LetterType } from "../../models/api/LetterType";
 import * as kanjiActions from "../../redux/kanjiCategories/thunk";
 import * as hiraganaActions from "../../redux/hiraganaCategories/thunk";
 import * as katakanaActions from "../../redux/katakanaCategories/thunk";
 import JapanFlag from "../JapanFlag";
 import MenuItem from "./MenuItem";
 //import SettingsMenuItem from "./SettingsMenuItem";
-import {
-  renderKanaSubMenuItem,
-  renderKanjiSubMenuItem,
-} from "./SubMenuItemRenderers";
-import {
-  mapCategoryToFa,
-  mapCategoryToKatakana,
-  mapCategoryToHiragana,
-} from "./CategoryMappers";
+import * as menuItemFactory from "./MenuItemPropsFactory";
 
 const mapState = (state: RootState) => ({
   kanjiCategories: state.kanjiCategories,
@@ -62,28 +55,19 @@ const Menu = (props: PropsFromRedux) => {
     <div className="nav">
       <JapanFlag />
       <MenuItem
-        categories={props.kanjiCategories}
-        renderSubMenuItem={renderKanjiSubmenuItem}
-        abcTypeCss="kanji"
-        abcType="kanji"
-        menuItemText="語"
-        subMenuItemHeader="Kanji"
+        {...menuItemFactory.order(LetterType.KANJI, props.kanjiCategories)}
       />
       <MenuItem
-        categories={props.hiraganaCategories}
-        renderSubMenuItem={renderHiraganaSubmenuItem}
-        abcTypeCss="hiragana"
-        abcType="hiragana"
-        menuItemText="あ"
-        subMenuItemHeader="Hiragana"
+        {...menuItemFactory.order(
+          LetterType.HIRAGANA,
+          props.hiraganaCategories
+        )}
       />
       <MenuItem
-        categories={props.katakanaCategories}
-        renderSubMenuItem={renderKatakanaSubmenuItem}
-        abcTypeCss="katakana"
-        abcType="katakana"
-        menuItemText="ア"
-        subMenuItemHeader="Katakana"
+        {...menuItemFactory.order(
+          LetterType.KATAKANA,
+          props.katakanaCategories
+        )}
       />
     </div>
   );
@@ -101,70 +85,7 @@ function loadCategories(
 }
 
 /*
-class Menu extends React.Component {
-  //componentDidMount() {
-    //const {
-      //kanjiCategories,
-      //katakanaCategories,
-      //hiraganaCategories,
-      //actions,
-    //} = this.props;
-
-    loadCategories(kanjiCategories, actions.loadKanjiCategories);
-    //loadCategories(katakanaCategories, actions.loadKatakanaCategories);
-    //loadCategories(hiraganaCategories, actions.loadHiraganaCategories);
-  //}
-
-  render() {
-    return (
-      <div className="nav">
-        <JapanFlag />
-        <MenuItem
-          categories={this.props.kanjiCategories}
-          renderSubMenuItem={renderKanjiSubmenuItem}
-          abcTypeCss="kanji"
-          abcType="kanji"
-          menuItemText="語"
-          subMenuItemHeader="Kanji"
-        />
-        {/*
-        <MenuItem
-          categories={this.props.hiraganaCategories}
-          renderSubMenuItem={renderHiraganaSubmenuItem}
-          abcTypeCss="hiragana"
-          abcType="hiragana"
-          menuItemText="あ"
-          subMenuItemHeader="Hiragana"
-        />
-        <MenuItem
-          categories={this.props.katakanaCategories}
-          renderSubMenuItem={renderKatakanaSubmenuItem}
-          abcTypeCss="katakana"
-          abcType="katakana"
-          menuItemText="ア"
-          subMenuItemHeader="Katakana"
-        />
-        <SettingsMenuItem />
-        *
-      </div>
-    );
-  }
-}
+  <SettingsMenuItem />
 */
-
-function renderKanjiSubmenuItem(category) {
-  let symbol = mapCategoryToFa(category);
-  return renderKanjiSubMenuItem(symbol);
-}
-
-function renderKatakanaSubmenuItem(category) {
-  let symbol = mapCategoryToKatakana(category);
-  return renderKanaSubMenuItem(symbol);
-}
-
-function renderHiraganaSubmenuItem(category) {
-  let symbol = mapCategoryToHiragana(category);
-  return renderKanaSubMenuItem(symbol);
-}
 
 export default connector(Menu);

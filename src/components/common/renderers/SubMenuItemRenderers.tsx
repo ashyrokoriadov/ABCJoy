@@ -1,9 +1,9 @@
 import React from "react";
 
-export function renderKanjiSubMenuItem(symbol) {
+export function renderKanjiSubMenu(symbol: string): JSX.Element {
   return <span className={symbol}></span>;
 }
 
-export function renderKanaSubMenuItem(symbol) {
+export function renderKanaSubMenu(symbol: string): JSX.Element {
   return <p className="sub-menu-item-text">{symbol}</p>;
 }

@@ -1,4 +1,7 @@
-export function mapCategoryToFa(category, size = "fa-2x") {
+export function mapCategoryToFa(
+  category: string,
+  size: string = "fa-2x"
+): string {
   switch (category) {
     case "adjectives":
       return "fab fa-amilia " + size;
@@ -23,7 +26,7 @@ export function mapCategoryToFa(category, size = "fa-2x") {
   }
 }
 
-export function mapCategoryToKatakana(category) {
+export function mapCategoryToKatakana(category: string): string {
   switch (category) {
     case "Regular":
       return "ホ";
@@ -36,7 +39,7 @@ export function mapCategoryToKatakana(category) {
   }
 }
 
-export function mapCategoryToHiragana(category) {
+export function mapCategoryToHiragana(category: string): string {
   switch (category) {
     case "Regular":
       return "ほ";
