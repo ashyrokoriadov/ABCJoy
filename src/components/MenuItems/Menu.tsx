@@ -6,10 +6,10 @@ import { LetterType } from "../../models/api/LetterType";
 import * as kanjiActions from "../../redux/kanjiCategories/thunk";
 import * as hiraganaActions from "../../redux/hiraganaCategories/thunk";
 import * as katakanaActions from "../../redux/katakanaCategories/thunk";
+import * as menuItemFactory from "./MenuItemPropsFactory";
 import JapanFlag from "../JapanFlag";
 import MenuItem from "./MenuItem";
-//import SettingsMenuItem from "./SettingsMenuItem";
-import * as menuItemFactory from "./MenuItemPropsFactory";
+import SettingsMenuItem from "./SettingsMenuItem";
 
 const mapState = (state: RootState) => ({
   kanjiCategories: state.kanjiCategories,
@@ -69,6 +69,7 @@ const Menu = (props: PropsFromRedux) => {
           props.katakanaCategories
         )}
       />
+      <SettingsMenuItem />
     </div>
   );
 };
@@ -83,9 +84,5 @@ function loadCategories(
     });
   }
 }
-
-/*
-  <SettingsMenuItem />
-*/
 
 export default connector(Menu);
