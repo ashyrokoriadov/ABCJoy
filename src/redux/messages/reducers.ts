@@ -24,6 +24,7 @@ export default function messageReducer(
         messageType: MessageTypes.INFO.toLowerCase(),
         shouldDisplay: true,
       };
+      console.log(message);
       return message;
     case CLOSE_MESSAGE:
       message = {

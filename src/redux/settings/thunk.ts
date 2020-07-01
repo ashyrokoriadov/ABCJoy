@@ -4,10 +4,17 @@ import { RootState } from "../reducers";
 import { ThunkAction } from "redux-thunk";
 import { QuizSettings } from "../../models/QuizSettings";
 
-export const loadQuizSettings = () => async (dispatch) => {
+export const loadQuizSettings = (): ThunkAction<
+  void,
+  RootState,
+  unknown,
+  Action
+> => async (dispatch) => {
   return dispatch(loadSettings());
 };
 
-export const saveQuizSettings = (settings) => async (dispatch) => {
+export const saveQuizSettings = (
+  settings: QuizSettings
+): ThunkAction<void, RootState, unknown, Action> => async (dispatch) => {
   return dispatch(saveSettings(settings));
 };

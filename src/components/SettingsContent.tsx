@@ -7,7 +7,7 @@ const SettingsContent = (props) => {
   return (
     <div className="content">
       <SettingsModel />
-      {/*<MessagePanel history={props.history} />*/}
+      <MessagePanel {...props.history} />
     </div>
   );
 };

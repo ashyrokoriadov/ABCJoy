@@ -3,6 +3,7 @@ import kanjiCategoriesReducer from "../kanjiCategories/reducers";
 import hiraganaCategoriesReducer from "../hiraganaCategories/reducers";
 import katakanaCategoriesReducer from "../katakanaCategories/reducers";
 import settingsReducer from "../settings/reducers";
+import messagesReducer from "../messages/reducers";
 /*import katakanaCategories from "./katakanaCategoryReducer";
 import quiz from "./quizReducer";
 import questionIndex from "./questionReducer";
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   kanjiCategories: kanjiCategoriesReducer,
   hiraganaCategories: hiraganaCategoriesReducer,
   katakanaCategories: katakanaCategoriesReducer,
-  settings: settingsReducer /*
+  settings: settingsReducer,
+  message: messagesReducer /*
 
   quiz,
   questionIndex,

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-//import PropTypes from "prop-types";
-import { QuizSettings } from "../../models/QuizSettings";
+import { SettingsProps } from "../../models/SettingsProps";
 
-const Settings = (props: QuizSettings, handleOK: (QuizSettings) => void) => {
-  const [questionsCount, setQuestionsCount] = useState(props.questionsCount);
+const Settings = (props: SettingsProps) => {
+  const [questionsCount, setQuestionsCount] = useState(
+    props.settings.questionsCount
+  );
   const [timeBetweenQuestions, setTimeBetweenQuestions] = useState(
-    props.timeBetweenQuestions
+    props.settings.timeBetweenQuestions
   );
 
   const questionsCountMax = 10;
@@ -65,7 +66,7 @@ const Settings = (props: QuizSettings, handleOK: (QuizSettings) => void) => {
       <div
         className="settings-ok"
         onClick={() => {
-          handleOK({ questionsCount, timeBetweenQuestions });
+          props.handleOk({ questionsCount, timeBetweenQuestions });
         }}
       >
         OK
@@ -73,14 +74,6 @@ const Settings = (props: QuizSettings, handleOK: (QuizSettings) => void) => {
     </div>
   );
 };
-
-/*
-Settings.propTypes = {
-  questionsCount: PropTypes.number.isRequired,
-  timeBetweenQuestions: PropTypes.number.isRequired,
-  //handleOK: PropTypes.func.isRequired,
-};
-*/
 
 const validateNumberRange = (actualValue, minValue, maxValue) =>
   actualValue >= minValue && actualValue <= maxValue;
