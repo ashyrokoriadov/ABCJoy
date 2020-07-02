@@ -7,7 +7,7 @@ import EmptyContent from "./EmptyContent";
 import SettingsContent from "./SettingsContent";
 import Footer from "./Footer";
 
-export default function App() {
+export default function App(): JSX.Element {
   return (
     <div className="container">
       <Menu />

@@ -1,5 +1,11 @@
 import React, { useState } from "react";
 import { SettingsProps } from "../../models/SettingsProps";
+import { validateNumberRange } from "../../components/common/validators/NumberRangeValidator";
+import {
+  NumberRangeRule,
+  questionCountRule,
+  timeBetweenQuestionsRule,
+} from "../../components/common/validators/ValidationRules";
 
 const Settings = (props: SettingsProps) => {
   const [questionsCount, setQuestionsCount] = useState(
@@ -9,18 +15,12 @@ const Settings = (props: SettingsProps) => {
     props.settings.timeBetweenQuestions
   );
 
-  const questionsCountMax = 10;
-  const questionsCountMin = 1;
-
-  const timeBetweenQuestionsMax = 5;
-  const timeBetweenQuestionsMin = 1;
-
-  function handleNumberChange(e, setState, minValue, maxValue) {
-    if (validateNumberRange(e.target.value, minValue, maxValue)) {
+  function handleNumberChange(e, setState, rule: NumberRangeRule) {
+    if (validateNumberRange(e.target.value, rule)) {
       setState(e.target.value);
     } else {
       console.log(
-        `Validation failed: ${e.target.value}, ${minValue}, ${maxValue}.`
+        `Validation failed: ${e.target.value}, ${rule.min}, ${rule.max}.`
       );
     }
   }
@@ -32,36 +32,30 @@ const Settings = (props: SettingsProps) => {
         type="number"
         className="settings-value"
         name="questionsCount"
-        min={questionsCountMin}
-        max={questionsCountMax}
+        min={questionCountRule.min}
+        max={questionCountRule.max}
         value={questionsCount}
         onChange={(e) => {
-          handleNumberChange(
-            e,
-            setQuestionsCount,
-            questionsCountMin,
-            questionsCountMax
-          );
+          handleNumberChange(e, setQuestionsCount, questionCountRule);
         }}
-        title={`Właściwość przyjmuje wartości w przedziale od ${questionsCountMin} do ${questionsCountMax}.`}
+        title={`Właściwość przyjmuje wartości w przedziale od ${questionCountRule.min} do ${questionCountRule.max}.`}
       />
       <div className="settings-label">Czas między pytaniamy, sek.</div>
       <input
         type="number"
         className="settings-value"
         name="timeBetweenQuestions"
-        min={timeBetweenQuestionsMin}
-        max={timeBetweenQuestionsMax}
+        min={timeBetweenQuestionsRule.min}
+        max={timeBetweenQuestionsRule.max}
         value={timeBetweenQuestions}
         onChange={(e) => {
           handleNumberChange(
             e,
             setTimeBetweenQuestions,
-            timeBetweenQuestionsMin,
-            timeBetweenQuestionsMax
+            timeBetweenQuestionsRule
           );
         }}
-        title={`Właściwość przyjmuje wartości w przedziale od ${timeBetweenQuestionsMin} do ${timeBetweenQuestionsMax}.`}
+        title={`Właściwość przyjmuje wartości w przedziale od ${timeBetweenQuestionsRule.min} do ${timeBetweenQuestionsRule.max}.`}
       />
       <div
         className="settings-ok"
@@ -74,8 +68,5 @@ const Settings = (props: SettingsProps) => {
     </div>
   );
 };
-
-const validateNumberRange = (actualValue, minValue, maxValue) =>
-  actualValue >= minValue && actualValue <= maxValue;
 
 export default Settings;
