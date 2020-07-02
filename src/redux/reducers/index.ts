@@ -4,12 +4,9 @@ import hiraganaCategoriesReducer from "../hiraganaCategories/reducers";
 import katakanaCategoriesReducer from "../katakanaCategories/reducers";
 import settingsReducer from "../settings/reducers";
 import messagesReducer from "../messages/reducers";
-/*import katakanaCategories from "./katakanaCategoryReducer";
-import quiz from "./quizReducer";
-import questionIndex from "./questionReducer";
-import message from "./messageReducer";
+import quizReducer from "../quiz/reducers";
+/*import questionIndex from "./questionReducer";
 import correctAnswerCount from "./correctAnswerReducer";
-import settings from "./settingsReducer";
 import quizTimer from "./quizTimerReducer";*/
 
 const rootReducer = combineReducers({
@@ -17,13 +14,10 @@ const rootReducer = combineReducers({
   hiraganaCategories: hiraganaCategoriesReducer,
   katakanaCategories: katakanaCategoriesReducer,
   settings: settingsReducer,
-  message: messagesReducer /*
-
-  quiz,
+  message: messagesReducer,
+  quiz: quizReducer /*
   questionIndex,
-  message,
   correctAnswerCount,
-  settings,
   quizTimer,
   */,
 });

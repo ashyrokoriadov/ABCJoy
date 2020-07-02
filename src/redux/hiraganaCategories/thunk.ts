@@ -14,7 +14,7 @@ export const loadCategories = (): ThunkAction<
   return await LettersApi.getCategories(LetterType.HIRAGANA)
     .then((categoriesResponse) => {
       const categories = categoriesResponse as string[];
-      if (categories != undefined) {
+      if (categories) {
         dispatch(loadCategoriesSuccess(categories));
       }
     })
