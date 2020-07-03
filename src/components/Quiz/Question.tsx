@@ -11,6 +11,7 @@ import { MessageType } from "../../models/MessageType";
 import { Letter } from "../../models/Letter";
 import { KanjiLetter } from "../../models/KanjiLetter";
 import { KanaQuestionProps } from "../../models/props/KanaQuestionProps";
+import { KanjiQuestionProps } from "../../models/props/KanjiQuestionProps";
 import KanaQuestion from "./KanaQuestion";
 import KanjiQuestion from "./KanjiQuestion";
 
@@ -105,7 +106,6 @@ const Question = (props: PropsFromRedux) => {
   }
 
   function checkAnswerKanji(event) {
-    debugger;
     if (isAnswered) {
       return;
     }
@@ -151,16 +151,15 @@ const Question = (props: PropsFromRedux) => {
   function getControlToRender(abc) {
     switch (abc) {
       case "kanji":
-        return (
-          <KanjiQuestion
-            question={question}
-            answerOptions={answerOptions}
-            answerOptionsRefs={answerOptionsRefs}
-            checkAnswer={checkAnswerKanji}
-            defaultAnswerOptionClass={defaultAnswerOptionClass}
-            correctAnswer={correctAnswer}
-          />
-        );
+        let kanjiQuestionProps: KanjiQuestionProps = {
+          question,
+          answerOptions: answerOptions as KanjiLetter[],
+          answerOptionsRefs,
+          checkAnswer: checkAnswerKanji,
+          defaultAnswerOptionClass,
+          correctAnswer: correctAnswer as KanjiLetter,
+        };
+        return <KanjiQuestion {...kanjiQuestionProps} />;
       default:
         let kanaQuestionProps: KanaQuestionProps = {
           question,

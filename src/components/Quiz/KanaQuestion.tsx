@@ -18,7 +18,6 @@ export default function KanaQuestion(props: KanaQuestionProps) {
           let answerOptionRef = React.createRef();
           answerOptionsRefs.push(answerOptionRef);
           let ref = (answerOptionRef as unknown) as string;
-
           return (
             <div
               ref={ref}
