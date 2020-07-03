@@ -6,9 +6,8 @@ import settingsReducer from "../settings/reducers";
 import messagesReducer from "../messages/reducers";
 import quizReducer from "../quiz/reducers";
 import questionReducer from "../question/reducers";
-/*
-import correctAnswerCount from "./correctAnswerReducer";
-import quizTimer from "./quizTimerReducer";*/
+import correctAnswerCountReducer from "../correctAnswer/reducers";
+import quizTimerReducer from "../quizTimer/reducers";
 
 const rootReducer = combineReducers({
   kanjiCategories: kanjiCategoriesReducer,
@@ -17,10 +16,9 @@ const rootReducer = combineReducers({
   settings: settingsReducer,
   message: messagesReducer,
   quiz: quizReducer,
-  questionIdex: questionReducer /*
-  correctAnswerCount,
-  quizTimer,
-  */,
+  questionIdex: questionReducer,
+  correctAnswerCount: correctAnswerCountReducer,
+  quizTimer: quizTimerReducer,
 });
 
 export default rootReducer;
