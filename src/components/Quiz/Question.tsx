@@ -10,6 +10,7 @@ import * as messageActions from "../../redux/messages/thunk";
 import { MessageType } from "../../models/MessageType";
 import { Letter } from "../../models/Letter";
 import { KanjiLetter } from "../../models/KanjiLetter";
+import { KanaQuestionProps } from "../../models/props/KanaQuestionProps";
 import KanaQuestion from "./KanaQuestion";
 import KanjiQuestion from "./KanjiQuestion";
 
@@ -104,6 +105,7 @@ const Question = (props: PropsFromRedux) => {
   }
 
   function checkAnswerKanji(event) {
+    debugger;
     if (isAnswered) {
       return;
     }
@@ -160,15 +162,14 @@ const Question = (props: PropsFromRedux) => {
           />
         );
       default:
-        return (
-          <KanaQuestion
-            question={question}
-            answerOptions={answerOptions}
-            answerOptionsRefs={answerOptionsRefs}
-            checkAnswer={checkAnswerKana}
-            defaultAnswerOptionClass={defaultAnswerOptionClass}
-          />
-        );
+        let kanaQuestionProps: KanaQuestionProps = {
+          question,
+          answerOptions,
+          answerOptionsRefs,
+          defaultAnswerOptionClass,
+          checkAnswer: checkAnswerKana,
+        };
+        return <KanaQuestion {...kanaQuestionProps} />;
     }
   }
 
