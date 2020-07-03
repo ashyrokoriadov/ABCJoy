@@ -1,41 +1,58 @@
 import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import * as questionActions from "../../redux/actions/questionActions";
-import * as messageActions from "../../redux/actions/messageActions";
-import * as correctAnswersActions from "../../redux/actions/correctAnswerActions";
-import * as timerActions from "../../redux/actions/quizTimerActions";
-import { INFO } from "../common/MessageTypes";
+import { connect, ConnectedProps } from "react-redux";
+import { RootState } from "../../redux/reducers";
+import * as questionActions from "../../redux/question/thunk";
+import * as messageActions from "../../redux/messages/thunk";
+//import * as correctAnswersActions from "../../redux/actions/correctAnswerActions";
+//import * as timerActions from "../../redux/actions/quizTimerActions";
+import { MessageType } from "../../models/MessageType";
+import { Letter } from "../../models/Letter";
+import { KanjiLetter } from "../../models/KanjiLetter";
 import KanaQuestion from "./KanaQuestion";
 import KanjiQuestion from "./KanjiQuestion";
 
-export function Question(props) {
-  const {
-    quiz,
-    actions,
-    questionIndex,
-    abc,
-    correctAnswersCount,
-    timeBetweenQuestions,
-  } = props;
-  const defaultAnswerOptionClass = "answer";
+const mapState = (state: RootState) => ({
+  questionIndex: state.questionIdex,
+  settings: state.settings,
+  quiz: state.quiz,
+});
 
-  let question = "";
+function mapDispatch(dispatch) {
+  return {
+    actions: {
+      setQuestionIndex: bindActionCreators(
+        questionActions.setQuestionIndex,
+        dispatch
+      ),
+      showMessage: bindActionCreators(messageActions.showMessage, dispatch),
+    },
+  };
+}
+
+const connector = connect(mapState, mapDispatch);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+const Question = (props: PropsFromRedux) => {
+  const { abc, type } = useParams();
+  const { quiz, actions, questionIndex, settings } = props;
+  const defaultAnswerOptionClass: string = "answer";
+
+  let question: string = "";
   let correctAnswer = { latinName: "" };
-  let answerOptions = [];
+  let answerOptions: Letter[] = [];
   let answerOptionsRefs = [];
   let isAnswered = false;
   let isCorrectAnswer = false;
 
   if (props.quiz != undefined && props.quiz.length > 0) {
-    useEffect(() => {
-      actions.setQuestionIndex(questionIndex);
-      if (questionIndex == quiz.length) {
-        actions.pauseTimer();
-        actions.showMessage("Quiz został zakończony", INFO);
-      }
-    });
+    actions.setQuestionIndex(questionIndex);
+    if (questionIndex == quiz.length) {
+      //actions.pauseTimer();
+      actions.showMessage("Quiz został zakończony", MessageType.INFO);
+    }
 
     if (questionIndex < quiz.length) {
       question = questionIndex + 1 + ". " + quiz[questionIndex].question;
@@ -71,14 +88,14 @@ export function Question(props) {
       setCssCallsOnAnswerOption(defaultAnswerOptionClass);
       actions.setQuestionIndex(questionIndex + 1);
       if (isCorrectAnswer) {
-        actions.setCorrectAnswersCount(correctAnswersCount + 1);
+        //actions.setCorrectAnswersCount(correctAnswersCount + 1);
       }
-    }, timeBetweenQuestions * 1000);
+    }, settings.timeBetweenQuestions * 1000);
   }
 
   function showCorrectAnswerKana() {
-    let _correctAnswer = answerOptionsRefs.find(
-      (x) => x.current.innerText == correctAnswer.latinName
+    let _correctAnswer: any = answerOptionsRefs.find(
+      (x: any) => x.current.innerText == correctAnswer.latinName
     );
 
     if (_correctAnswer != undefined) {
@@ -91,28 +108,33 @@ export function Question(props) {
       return;
     }
 
-    event.target.className +=
-      event.target.innerText == correctAnswer.polish ? " correct" : " wrong";
+    let correctAnswerKanji = correctAnswer as KanjiLetter;
 
-    if (event.target.innerText != correctAnswer.polish) {
+    event.target.className +=
+      event.target.innerText == correctAnswerKanji.polish
+        ? " correct"
+        : " wrong";
+
+    if (event.target.innerText != correctAnswerKanji.polish) {
       showCorrectAnswerKanji();
     }
 
-    isCorrectAnswer = event.target.innerText == correctAnswer.polish;
+    isCorrectAnswer = event.target.innerText == correctAnswerKanji.polish;
     isAnswered = true;
 
     setTimeout(function () {
       setCssCallsOnAnswerOption(defaultAnswerOptionClass);
       actions.setQuestionIndex(questionIndex + 1);
       if (isCorrectAnswer) {
-        actions.setCorrectAnswersCount(correctAnswersCount + 1);
+        //actions.setCorrectAnswersCount(correctAnswersCount + 1);
       }
-    }, timeBetweenQuestions * 1000);
+    }, settings.timeBetweenQuestions * 1000);
   }
 
   function showCorrectAnswerKanji() {
-    let _correctAnswer = answerOptionsRefs.find(
-      (x) => x.current.innerText == correctAnswer.polish
+    let correctAnswerkanji: KanjiLetter = correctAnswer as KanjiLetter;
+    let _correctAnswer: any = answerOptionsRefs.find(
+      (x: any) => x.current.innerText == correctAnswerkanji.polish
     );
 
     if (_correctAnswer != undefined) {
@@ -121,7 +143,7 @@ export function Question(props) {
   }
 
   function setCssCallsOnAnswerOption(className) {
-    answerOptionsRefs.forEach((x) => (x.current.className = className));
+    answerOptionsRefs.forEach((x: any) => (x.current.className = className));
   }
 
   function getControlToRender(abc) {
@@ -151,30 +173,9 @@ export function Question(props) {
   }
 
   return getControlToRender(abc);
-}
-
-Question.propTypes = {
-  quiz: PropTypes.arrayOf(
-    PropTypes.shape({
-      question: PropTypes.string.isRequired,
-      correctAnswer: PropTypes.object.isRequired,
-      answerOptions: PropTypes.arrayOf(
-        PropTypes.shape({
-          sign: PropTypes.string.isRequired,
-          latinName: PropTypes.string.isRequired,
-          cyrillicName: PropTypes.string.isRequired,
-          type: PropTypes.string.isRequired,
-        }).isRequired
-      ),
-    }).isRequired
-  ),
-  actions: PropTypes.object.isRequired,
-  questionIndex: PropTypes.number.isRequired,
-  abc: PropTypes.string.isRequired,
-  correctAnswersCount: PropTypes.number,
-  timeBetweenQuestions: PropTypes.number,
 };
 
+/*
 function mapStateToProps(state) {
   return {
     questionIndex: state.questionIndex,
@@ -198,5 +199,6 @@ function mapDispatchToProps(dispatch) {
     },
   };
 }
+*/
 
-export default connect(mapStateToProps, mapDispatchToProps)(Question);
+export default connector(Question);

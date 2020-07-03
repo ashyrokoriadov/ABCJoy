@@ -2,6 +2,6 @@ import { Letter } from "./Letter";
 
 export interface Quiz {
   question: string;
-  correctanswer: Letter;
+  correctAnswer: Letter;
   answerOptions: Letter[];
 }

@@ -6,7 +6,7 @@ export default function Content(props): JSX.Element {
   return (
     <div className="content">
       <Quiz />
-      {/*<MessagePanel {...props.history} />*/}
+      <MessagePanel {...props.history} />
     </div>
   );
 }

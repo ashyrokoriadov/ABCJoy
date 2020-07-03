@@ -5,7 +5,8 @@ import katakanaCategoriesReducer from "../katakanaCategories/reducers";
 import settingsReducer from "../settings/reducers";
 import messagesReducer from "../messages/reducers";
 import quizReducer from "../quiz/reducers";
-/*import questionIndex from "./questionReducer";
+import questionReducer from "../question/reducers";
+/*
 import correctAnswerCount from "./correctAnswerReducer";
 import quizTimer from "./quizTimerReducer";*/
 
@@ -15,8 +16,8 @@ const rootReducer = combineReducers({
   katakanaCategories: katakanaCategoriesReducer,
   settings: settingsReducer,
   message: messagesReducer,
-  quiz: quizReducer /*
-  questionIndex,
+  quiz: quizReducer,
+  questionIdex: questionReducer /*
   correctAnswerCount,
   quizTimer,
   */,

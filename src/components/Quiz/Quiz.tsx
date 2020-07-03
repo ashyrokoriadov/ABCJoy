@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import { RootState } from "../../redux/reducers";
 import * as settingsAction from "../../redux/settings/thunk";
 import * as quizActions from "../../redux/quiz/thunk";
+import * as questionActions from "../../redux/question/thunk";
 //import PropTypes from "prop-types";
 //import QuizStatisticsView from "./QuizStatistics";
 import QuizQuestion from "./Question";
@@ -33,6 +34,10 @@ function mapDispatch(dispatch) {
         settingsAction.loadQuizSettings,
         dispatch
       ),
+      setQuestionIndex: bindActionCreators(
+        questionActions.setQuestionIndex,
+        dispatch
+      ),
     },
   };
 }
@@ -51,7 +56,7 @@ const Quiz = (props: PropsFromRedux) => {
     } catch (error) {
       alert("Loading quiz failed. " + error);
     }
-    //actions.setQuestionIndex(0);
+    props.actions.setQuestionIndex(0);
   }, [abc, type, props.settings.questionsCount]);
 
   useEffect(() => {
@@ -61,13 +66,7 @@ const Quiz = (props: PropsFromRedux) => {
   return (
     <div id="quiz">
       {
-        <QuizQuestion
-          quiz={props.quiz}
-          abc={abc}
-          questionIndex={0}
-          correctAnswersCount={0}
-          timeBetweenQuestions={props.settings.timeBetweenQuestions}
-        />
+        <QuizQuestion />
         /*
       <QuizStatisticsView type={quizType} questionsCount={questionsCount} />*/
       }
