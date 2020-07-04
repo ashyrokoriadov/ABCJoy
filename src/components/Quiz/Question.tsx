@@ -7,7 +7,7 @@ import * as questionActions from "../../store/question/thunk";
 import * as messageActions from "../../store/messages/thunk";
 import * as correctAnswersActions from "../../store/correctAnswer/thunk";
 import * as timerActions from "../../store/quizTimer/thunk";
-import { MessageType } from "../../models/MessageType";
+import { MessageType } from "../../models/enums/MessageType";
 import { Letter } from "../../models/Letter";
 import { KanjiLetter } from "../../models/KanjiLetter";
 import { KanaQuestionProps } from "../../models/props/KanaQuestionProps";

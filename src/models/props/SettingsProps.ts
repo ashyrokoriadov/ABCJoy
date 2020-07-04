@@ -1,4 +1,4 @@
-import { QuizSettings } from "./QuizSettings";
+import { QuizSettings } from "../QuizSettings";
 
 export interface SettingsProps {
   settings: QuizSettings;

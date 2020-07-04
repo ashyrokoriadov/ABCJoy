@@ -1,5 +1,5 @@
 import { LetterType } from "../../models/api/LetterType";
-import { MenuItemProps } from "../../models/MenuItemProps";
+import { MenuItemProps } from "../../models/props/MenuItemProps";
 import {
   renderKatakanaSubMenuItem,
   renderHiraganaSubMenuItem,

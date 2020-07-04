@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SettingsProps } from "../../models/SettingsProps";
+import { SettingsProps } from "../../models/props/SettingsProps";
 import { validateNumberRange } from "../../components/common/validators/NumberRangeValidator";
 import {
   NumberRangeRule,

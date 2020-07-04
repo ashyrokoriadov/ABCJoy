@@ -2,7 +2,7 @@ import { Action } from "redux";
 import { showInfoMessage, requestCloseMessage } from "./actions";
 import { RootState } from "..";
 import { ThunkAction } from "redux-thunk";
-import { MessageType } from "../../models/MessageType";
+import { MessageType } from "../../models/enums/MessageType";
 
 export function showMessage(
   text: string,

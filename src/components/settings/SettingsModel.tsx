@@ -6,7 +6,7 @@ import { RootState } from "../../store";
 import * as settingsAction from "../../store/settings/thunk";
 import * as messageActions from "../../store/messages/thunk";
 import { QuizSettings } from "../../models/QuizSettings";
-import { MessageType } from "../../models/MessageType";
+import { MessageType } from "../../models/enums/MessageType";
 
 const mapState = (state: RootState) => ({
   settings: state.settings,
