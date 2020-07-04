@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { bindActionCreators } from "redux";
-import { RootState } from "../../store/reducers";
+import { RootState } from "../../store";
 import * as timerActions from "../../store/quizTimer/thunk";
 
 const mapState = (state: RootState) => ({

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { connect, ConnectedProps } from "react-redux";
-import { RootState } from "../../store/reducers";
+import { RootState } from "../../store";
 import * as questionActions from "../../store/question/thunk";
 import * as messageActions from "../../store/messages/thunk";
 import * as correctAnswersActions from "../../store/correctAnswer/thunk";

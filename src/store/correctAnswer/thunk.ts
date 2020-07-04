@@ -1,6 +1,6 @@
 import { Action } from "redux";
 import { setCounter, resetCounter } from "./actions";
-import { RootState } from "../reducers";
+import { RootState } from "..";
 import { ThunkAction } from "redux-thunk";
 
 export function saveCorrectAnswersCount(

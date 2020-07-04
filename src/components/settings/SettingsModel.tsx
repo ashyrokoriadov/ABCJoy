@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Settings from "./Settings";
 import { connect, ConnectedProps } from "react-redux";
 import { bindActionCreators } from "redux";
-import { RootState } from "../../store/reducers";
+import { RootState } from "../../store";
 import * as settingsAction from "../../store/settings/thunk";
 import * as messageActions from "../../store/messages/thunk";
 import { QuizSettings } from "../../models/QuizSettings";

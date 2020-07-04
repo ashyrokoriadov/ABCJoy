@@ -1,6 +1,6 @@
 import { Action } from "redux";
 import { showInfoMessage, requestCloseMessage } from "./actions";
-import { RootState } from "../reducers";
+import { RootState } from "..";
 import { ThunkAction } from "redux-thunk";
 import { MessageType } from "../../models/MessageType";
 

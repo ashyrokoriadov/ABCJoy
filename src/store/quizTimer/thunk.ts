@@ -5,7 +5,7 @@ import {
   dispatchResetTimer,
   dispatchIncrementTimer,
 } from "./actions";
-import { RootState } from "../reducers";
+import { RootState } from "..";
 import { ThunkAction } from "redux-thunk";
 
 export function startTimer(): ThunkAction<void, RootState, unknown, Action> {

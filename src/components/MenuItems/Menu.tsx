@@ -1,7 +1,7 @@
 import React from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { bindActionCreators } from "redux";
-import { RootState } from "../../store/reducers";
+import { RootState } from "../../store";
 import { LetterType } from "../../models/api/LetterType";
 import * as kanjiActions from "../../store/kanjiCategories/thunk";
 import * as hiraganaActions from "../../store/hiraganaCategories/thunk";

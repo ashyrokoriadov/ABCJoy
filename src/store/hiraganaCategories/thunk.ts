@@ -1,6 +1,6 @@
 import { Action } from "redux";
 import { loadCategoriesSuccess } from "./actions";
-import { RootState } from "../reducers";
+import { RootState } from "..";
 import { ThunkAction } from "redux-thunk";
 import * as LettersApi from "../../api/LettersApi";
 import { LetterType } from "../../models/api/LetterType";

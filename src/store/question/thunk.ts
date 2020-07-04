@@ -1,5 +1,5 @@
 import { setQuestionIndexSuccess } from "./actions";
-import { RootState } from "../reducers";
+import { RootState } from "..";
 import { ThunkAction } from "redux-thunk";
 import { Action } from "redux";
 

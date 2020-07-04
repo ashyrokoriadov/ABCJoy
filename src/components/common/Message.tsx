@@ -5,7 +5,7 @@ import * as questionActions from "../../store/question/actions";
 import * as timerActions from "../../store/quizTimer/actions";
 import * as correctAnswersActions from "../../store/correctAnswer/actions";
 import { bindActionCreators } from "redux";
-import { RootState } from "../../store/reducers";
+import { RootState } from "../../store";
 
 const mapState = (state: RootState) => ({
   shouldDisplay: state.message.shouldDisplay,

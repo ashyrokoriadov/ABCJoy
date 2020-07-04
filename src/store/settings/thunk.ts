@@ -1,6 +1,6 @@
 import { Action } from "redux";
 import { loadSettings, saveSettings } from "./actions";
-import { RootState } from "../reducers";
+import { RootState } from "..";
 import { ThunkAction } from "redux-thunk";
 import { QuizSettings } from "../../models/QuizSettings";
 

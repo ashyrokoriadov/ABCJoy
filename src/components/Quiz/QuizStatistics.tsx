@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { RootState } from "../../store/reducers";
+import { RootState } from "../../store";
 import { connect, ConnectedProps } from "react-redux";
 import * as timerActions from "../../store/quizTimer/thunk";
 import { bindActionCreators } from "redux";
