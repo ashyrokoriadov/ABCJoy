@@ -5,8 +5,8 @@ import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "../../redux/reducers";
 import * as questionActions from "../../redux/question/thunk";
 import * as messageActions from "../../redux/messages/thunk";
-//import * as correctAnswersActions from "../../redux/actions/correctAnswerActions";
-//import * as timerActions from "../../redux/actions/quizTimerActions";
+import * as correctAnswersActions from "../../redux/correctAnswer/thunk";
+import * as timerActions from "../../redux/quizTimer/thunk";
 import { MessageType } from "../../models/MessageType";
 import { Letter } from "../../models/Letter";
 import { KanjiLetter } from "../../models/KanjiLetter";
@@ -19,6 +19,7 @@ const mapState = (state: RootState) => ({
   questionIndex: state.questionIdex,
   settings: state.settings,
   quiz: state.quiz,
+  correctAnswersCount: state.correctAnswerCount,
 });
 
 function mapDispatch(dispatch) {
@@ -29,6 +30,11 @@ function mapDispatch(dispatch) {
         dispatch
       ),
       showMessage: bindActionCreators(messageActions.showMessage, dispatch),
+      setCorrectAnswersCount: bindActionCreators(
+        correctAnswersActions.saveCorrectAnswersCount,
+        dispatch
+      ),
+      pauseTimer: bindActionCreators(timerActions.pauseTimer, dispatch),
     },
   };
 }
@@ -49,13 +55,15 @@ const Question = (props: PropsFromRedux) => {
   let isAnswered = false;
   let isCorrectAnswer = false;
 
-  if (props.quiz != undefined && props.quiz.length > 0) {
+  useEffect(() => {
     actions.setQuestionIndex(questionIndex);
     if (questionIndex == quiz.length) {
-      //actions.pauseTimer();
+      actions.pauseTimer();
       actions.showMessage("Quiz został zakończony", MessageType.INFO);
     }
+  });
 
+  if (props.quiz != undefined && props.quiz.length > 0) {
     if (questionIndex < quiz.length) {
       question = questionIndex + 1 + ". " + quiz[questionIndex].question;
       correctAnswer = quiz[questionIndex].correctAnswer;
@@ -90,7 +98,7 @@ const Question = (props: PropsFromRedux) => {
       setCssCallsOnAnswerOption(defaultAnswerOptionClass);
       actions.setQuestionIndex(questionIndex + 1);
       if (isCorrectAnswer) {
-        //actions.setCorrectAnswersCount(correctAnswersCount + 1);
+        props.actions.setCorrectAnswersCount(props.correctAnswersCount + 1);
       }
     }, settings.timeBetweenQuestions * 1000);
   }
@@ -128,7 +136,7 @@ const Question = (props: PropsFromRedux) => {
       setCssCallsOnAnswerOption(defaultAnswerOptionClass);
       actions.setQuestionIndex(questionIndex + 1);
       if (isCorrectAnswer) {
-        //actions.setCorrectAnswersCount(correctAnswersCount + 1);
+        props.actions.setCorrectAnswersCount(props.correctAnswersCount + 1);
       }
     }, settings.timeBetweenQuestions * 1000);
   }
@@ -174,31 +182,5 @@ const Question = (props: PropsFromRedux) => {
 
   return getControlToRender(abc);
 };
-
-/*
-function mapStateToProps(state) {
-  return {
-    questionIndex: state.questionIndex,
-    correctAnswersCount: state.correctAnswerCount,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: {
-      setQuestionIndex: bindActionCreators(
-        questionActions.setQuestionIndex,
-        dispatch
-      ),
-      showMessage: bindActionCreators(messageActions.showMessage, dispatch),
-      setCorrectAnswersCount: bindActionCreators(
-        correctAnswersActions.saveCorrectAnswersCount,
-        dispatch
-      ),
-      pauseTimer: bindActionCreators(timerActions.pauseTimer, dispatch),
-    },
-  };
-}
-*/
 
 export default connector(Question);

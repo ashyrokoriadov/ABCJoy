@@ -1,14 +1,11 @@
 import React from "react";
 import { connect, ConnectedProps } from "react-redux";
-//import PropTypes from "prop-types";
 import * as messageActions from "../../redux/messages/actions";
-//import * as questionActions from "../../redux/actions/questionActions";
-//import * as timerActions from "../../redux/actions/quizTimerActions";
-//import * as correctAnswersActions from "../../redux/actions/correctAnswerActions";
+import * as questionActions from "../../redux/question/actions";
+import * as timerActions from "../../redux/quizTimer/actions";
+import * as correctAnswersActions from "../../redux/correctAnswer/actions";
 import { bindActionCreators } from "redux";
 import { RootState } from "../../redux/reducers";
-import { withRouter } from "react-router";
-import { History } from "history";
 
 const mapState = (state: RootState) => ({
   shouldDisplay: state.message.shouldDisplay,
@@ -27,6 +24,15 @@ function mapDispatch(dispatch) {
         messageActions.showInfoMessage,
         dispatch
       ),
+      setQuestionIndex: bindActionCreators(
+        questionActions.setQuestionIndexSuccess,
+        dispatch
+      ),
+      resetCorrectAnswersCount: bindActionCreators(
+        correctAnswersActions.resetCounter,
+        dispatch
+      ),
+      resetTimer: bindActionCreators(timerActions.dispatchResetTimer, dispatch),
     },
   };
 }
@@ -41,9 +47,9 @@ const Message = (props) => {
         className={"button " + props.messageType}
         onClick={() => {
           props.actions.requestCloseMessage();
-          //actions.setQuestionIndex(0);
-          //actions.resetCorrectAnswersCount();
-          //actions.resetTimer();
+          props.actions.setQuestionIndex(0);
+          props.actions.resetCorrectAnswersCount();
+          props.actions.resetTimer();
           props.push("/");
         }}
       >
@@ -54,25 +60,5 @@ const Message = (props) => {
     <></>
   );
 };
-
-/*
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: {
-      requestCloseMessage: bindActionCreators(messageActions.requestCloseMessage, dispatch),
-      showInfoMessage: bindActionCreators(messageActions.showInfoMessage, dispatch),
-      setQuestionIndex: bindActionCreators(
-        questionActions.setQuestionIndex,
-        dispatch
-      ),
-      resetCorrectAnswersCount: bindActionCreators(
-        correctAnswersActions.resetCorrectAnswersCount,
-        dispatch
-      ),
-      resetTimer: bindActionCreators(timerActions.resetTimer, dispatch),
-    },
-  };
-}
-*/
 
 export default connector(Message);
