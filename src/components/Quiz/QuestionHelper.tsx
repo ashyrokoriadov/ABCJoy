@@ -1,22 +1,10 @@
 import { Letter } from "../../models/Letter";
 import { KanjiLetter } from "../../models/KanjiLetter";
 
-export class LetterQuestionHelper {
-  isAnswered: boolean;
-  correctAnswer: Letter;
-  timeBetweenQuestions: number;
-  questionIndex: number;
-  correctAnswersCount: number;
-  answerOptionsRefs: Array<any>;
-  setQuestionIndex: (number: number) => void;
-  setCorrectAnswersCount: (number: number) => void;
-  defaultAnswerOptionClass: string = "answer";
-  wrongAnswerClass: string = "wrong";
-  correctAnswerClass: string = "correct";
-  isCorrectAnswer: boolean = false;
+abstract class QuestionHelper<T extends Letter> {
   constructor(
     isAnswered: boolean,
-    correctAnswer: Letter,
+    correctAnswer: T,
     timeBetweenQuestions: number,
     questionIndex: number,
     correctAnswersCount: number,
@@ -24,7 +12,7 @@ export class LetterQuestionHelper {
     setQuestionIndex: (number: number) => void,
     setCorrectAnswersCount: (number: number) => void
   ) {
-    this.isAnswered = isAnswered;
+    this._isAnswered = isAnswered;
     this.correctAnswer = correctAnswer;
     this.timeBetweenQuestions = timeBetweenQuestions;
     this.questionIndex = questionIndex;
@@ -42,11 +30,88 @@ export class LetterQuestionHelper {
     this.setCssClassOnSelectedAnswer(event);
     this.showCorrectAnswer(event);
     this.defineWhetherAnswerIsCorrect(event);
-    this.isAnswered = true;
+    this._isAnswered = true;
 
     setTimeout(
       this.triggerLogicWithTimeout.bind(this),
       this.timeBetweenQuestions * 1000
+    );
+  }
+
+  protected abstract setCssClassOnSelectedAnswer(event): void;
+
+  protected abstract showCorrectAnswer(event): void;
+
+  protected abstract defineWhetherAnswerIsCorrect(event): void;
+
+  protected triggerLogicWithTimeout(): void {
+    this.setCssClassOnAnswerOption(this.defaultAnswerOptionClass);
+    this.setQuestionIndex(this.questionIndex + 1);
+    if (this.isCorrectAnswer) {
+      this.setCorrectAnswersCount(this.correctAnswersCount + 1);
+    }
+  }
+
+  protected setCssClassOnAnswerOption(className: string): void {
+    this.answerOptionsRefs.forEach(
+      (x: any) => (x.current.className = className)
+    );
+  }
+
+  protected _isAnswered: boolean;
+
+  get isAnswered(): boolean {
+    return this._isAnswered;
+  }
+
+  get defaultAnswerOptionClass(): string {
+    return "answer";
+  }
+
+  get wrongAnswerClass(): string {
+    return "wrong";
+  }
+
+  get correctAnswerClass(): string {
+    return "correct";
+  }
+
+  protected _isCorrectAnswer: boolean = false;
+
+  get isCorrectAnswer(): boolean {
+    return this._isCorrectAnswer;
+  }
+
+  readonly correctAnswer: T;
+  readonly timeBetweenQuestions: number;
+  readonly questionIndex: number;
+  readonly correctAnswersCount: number;
+  readonly answerOptionsRefs: Array<any>;
+
+  protected setQuestionIndex: (number: number) => void;
+  protected setCorrectAnswersCount: (number: number) => void;
+}
+
+export class LetterQuestionHelper extends QuestionHelper<Letter> {
+  constructor(
+    isAnswered: boolean,
+    correctAnswer: Letter,
+    timeBetweenQuestions: number,
+    questionIndex: number,
+    correctAnswersCount: number,
+    answerOptionsRefs: Array<any>,
+    setQuestionIndex: (number: number) => void,
+    setCorrectAnswersCount: (number: number) => void
+  ) {
+    super(
+      isAnswered,
+      correctAnswer,
+      timeBetweenQuestions,
+      questionIndex,
+      correctAnswersCount,
+      answerOptionsRefs,
+      setQuestionIndex,
+      setCorrectAnswersCount
     );
   }
 
@@ -62,12 +127,6 @@ export class LetterQuestionHelper {
     }
   }
 
-  setCssClassOnAnswerOption(className: string): void {
-    this.answerOptionsRefs.forEach(
-      (x: any) => (x.current.className = className)
-    );
-  }
-
   setCssClassOnSelectedAnswer(event) {
     event.target.className +=
       event.target.innerText == this.correctAnswer.latinName
@@ -76,32 +135,12 @@ export class LetterQuestionHelper {
   }
 
   defineWhetherAnswerIsCorrect(event): void {
-    this.isCorrectAnswer =
+    this._isCorrectAnswer =
       event.target.innerText == this.correctAnswer.latinName;
-  }
-
-  triggerLogicWithTimeout(): void {
-    this.setCssClassOnAnswerOption(this.defaultAnswerOptionClass);
-    this.setQuestionIndex(this.questionIndex + 1);
-    if (this.isCorrectAnswer) {
-      this.setCorrectAnswersCount(this.correctAnswersCount + 1);
-    }
   }
 }
 
-export class KanjiQuestionHelper {
-  isAnswered: boolean;
-  correctAnswer: KanjiLetter;
-  timeBetweenQuestions: number;
-  questionIndex: number;
-  correctAnswersCount: number;
-  answerOptionsRefs: Array<any>;
-  setQuestionIndex: (number: number) => void;
-  setCorrectAnswersCount: (number: number) => void;
-  defaultAnswerOptionClass: string = "answer";
-  wrongAnswerClass: string = "wrong";
-  correctAnswerClass: string = "correct";
-  isCorrectAnswer: boolean = false;
+export class KanjiQuestionHelper extends QuestionHelper<KanjiLetter> {
   constructor(
     isAnswered: boolean,
     correctAnswer: KanjiLetter,
@@ -112,29 +151,15 @@ export class KanjiQuestionHelper {
     setQuestionIndex: (number: number) => void,
     setCorrectAnswersCount: (number: number) => void
   ) {
-    this.isAnswered = isAnswered;
-    this.correctAnswer = correctAnswer;
-    this.timeBetweenQuestions = timeBetweenQuestions;
-    this.questionIndex = questionIndex;
-    this.correctAnswersCount = correctAnswersCount;
-    this.answerOptionsRefs = answerOptionsRefs;
-    this.setQuestionIndex = setQuestionIndex;
-    this.setCorrectAnswersCount = setCorrectAnswersCount;
-  }
-
-  checkAnswer(event) {
-    if (this.isAnswered) {
-      return;
-    }
-
-    this.setCssClassOnSelectedAnswer(event);
-    this.showCorrectAnswer(event);
-    this.defineWhetherAnswerIsCorrect(event);
-    this.isAnswered = true;
-
-    setTimeout(
-      this.triggerLogicWithTimeout.bind(this),
-      this.timeBetweenQuestions * 1000
+    super(
+      isAnswered,
+      correctAnswer,
+      timeBetweenQuestions,
+      questionIndex,
+      correctAnswersCount,
+      answerOptionsRefs,
+      setQuestionIndex,
+      setCorrectAnswersCount
     );
   }
 
@@ -150,12 +175,6 @@ export class KanjiQuestionHelper {
     }
   }
 
-  setCssClassOnAnswerOption(className: string): void {
-    this.answerOptionsRefs.forEach(
-      (x: any) => (x.current.className = className)
-    );
-  }
-
   setCssClassOnSelectedAnswer(event) {
     event.target.className +=
       event.target.innerText == this.correctAnswer.polish
@@ -164,14 +183,6 @@ export class KanjiQuestionHelper {
   }
 
   defineWhetherAnswerIsCorrect(event): void {
-    this.isCorrectAnswer = event.target.innerText == this.correctAnswer.polish;
-  }
-
-  triggerLogicWithTimeout(): void {
-    this.setCssClassOnAnswerOption(this.defaultAnswerOptionClass);
-    this.setQuestionIndex(this.questionIndex + 1);
-    if (this.isCorrectAnswer) {
-      this.setCorrectAnswersCount(this.correctAnswersCount + 1);
-    }
+    this._isCorrectAnswer = event.target.innerText == this.correctAnswer.polish;
   }
 }
