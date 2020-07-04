@@ -1,11 +1,11 @@
 import React from "react";
 import { connect, ConnectedProps } from "react-redux";
-import * as messageActions from "../../redux/messages/actions";
-import * as questionActions from "../../redux/question/actions";
-import * as timerActions from "../../redux/quizTimer/actions";
-import * as correctAnswersActions from "../../redux/correctAnswer/actions";
+import * as messageActions from "../../store/messages/actions";
+import * as questionActions from "../../store/question/actions";
+import * as timerActions from "../../store/quizTimer/actions";
+import * as correctAnswersActions from "../../store/correctAnswer/actions";
 import { bindActionCreators } from "redux";
-import { RootState } from "../../redux/reducers";
+import { RootState } from "../../store/reducers";
 
 const mapState = (state: RootState) => ({
   shouldDisplay: state.message.shouldDisplay,

@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { bindActionCreators } from "redux";
-import { RootState } from "../../redux/reducers";
-import * as timerActions from "../../redux/quizTimer/thunk";
+import { RootState } from "../../store/reducers";
+import * as timerActions from "../../store/quizTimer/thunk";
 
 const mapState = (state: RootState) => ({
   isActive: state.quizTimer.isActive,

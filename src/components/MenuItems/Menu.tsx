@@ -1,11 +1,11 @@
 import React from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { bindActionCreators } from "redux";
-import { RootState } from "../../redux/reducers";
+import { RootState } from "../../store/reducers";
 import { LetterType } from "../../models/api/LetterType";
-import * as kanjiActions from "../../redux/kanjiCategories/thunk";
-import * as hiraganaActions from "../../redux/hiraganaCategories/thunk";
-import * as katakanaActions from "../../redux/katakanaCategories/thunk";
+import * as kanjiActions from "../../store/kanjiCategories/thunk";
+import * as hiraganaActions from "../../store/hiraganaCategories/thunk";
+import * as katakanaActions from "../../store/katakanaCategories/thunk";
 import * as menuItemFactory from "./MenuItemPropsFactory";
 import JapanFlag from "../JapanFlag";
 import MenuItem from "./MenuItem";

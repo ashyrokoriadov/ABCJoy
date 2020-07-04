@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { connect, ConnectedProps } from "react-redux";
 import { bindActionCreators } from "redux";
-import { RootState } from "../../redux/reducers";
-import * as settingsAction from "../../redux/settings/thunk";
-import * as quizActions from "../../redux/quiz/thunk";
-import * as questionActions from "../../redux/question/thunk";
-import * as quizTypeActions from "../../redux/quizType/thunk";
+import { RootState } from "../../store/reducers";
+import * as settingsAction from "../../store/settings/thunk";
+import * as quizActions from "../../store/quiz/thunk";
+import * as questionActions from "../../store/question/thunk";
+import * as quizTypeActions from "../../store/quizType/thunk";
 import QuizStatisticsView from "./QuizStatistics";
 import QuizQuestion from "./Question";
 
