@@ -56,10 +56,12 @@ const Question = (props: PropsFromRedux) => {
   let isCorrectAnswer = false;
 
   useEffect(() => {
-    actions.setQuestionIndex(questionIndex);
-    if (questionIndex == quiz.length) {
-      actions.pauseTimer();
-      actions.showMessage("Quiz został zakończony", MessageType.INFO);
+    if (props.quiz != undefined && props.quiz.length > 0) {
+      actions.setQuestionIndex(questionIndex);
+      if (questionIndex == quiz.length) {
+        actions.pauseTimer();
+        actions.showMessage("Quiz został zakończony", MessageType.INFO);
+      }
     }
   });
 
