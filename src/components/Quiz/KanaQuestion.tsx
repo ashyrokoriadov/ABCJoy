@@ -5,7 +5,7 @@ export default function KanaQuestion(props: KanaQuestionProps) {
   const {
     question,
     answerOptions,
-    checkAnswer,
+    questionHelper,
     defaultAnswerOptionClass,
     answerOptionsRefs,
   } = props;
@@ -22,7 +22,9 @@ export default function KanaQuestion(props: KanaQuestionProps) {
             <div
               ref={ref}
               key={answerOption.latinName}
-              onClick={checkAnswer}
+              onClick={(event) => {
+                questionHelper.checkAnswer(event);
+              }}
               className={defaultAnswerOptionClass}
             >
               {answerOption.latinName}

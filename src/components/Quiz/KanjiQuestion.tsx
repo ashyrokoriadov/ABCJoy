@@ -5,7 +5,7 @@ export default function KanjiQuestion(props: KanjiQuestionProps) {
   const {
     question,
     answerOptions,
-    checkAnswer,
+    questionHelper,
     defaultAnswerOptionClass,
     answerOptionsRefs,
     correctAnswer,
@@ -24,7 +24,7 @@ export default function KanjiQuestion(props: KanjiQuestionProps) {
             <div
               ref={ref}
               key={answerOption.latinName}
-              onClick={checkAnswer}
+              onClick={(event) => questionHelper.checkAnswer(event)}
               className={defaultAnswerOptionClass}
             >
               {answerOption.polish}
