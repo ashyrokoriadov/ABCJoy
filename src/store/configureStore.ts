@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import rootReducer from "./index";
 import reduxImmutableStateInvariant from "redux-immutable-state-invariant";
 import createSagaMiddleware from "redux-saga";
-import kanjiCategoriesSaga from "./kanjiCategories/sagas";
+import letterCategoriesSaga from "./letterCategories/sagas";
 //import thunk from "redux-thunk";
 
 export default function configureStore() {
@@ -17,6 +17,6 @@ export default function configureStore() {
     )
   );
 
-  sagaMiddleware.run(kanjiCategoriesSaga);
+  sagaMiddleware.run(letterCategoriesSaga);
   return store;
 }

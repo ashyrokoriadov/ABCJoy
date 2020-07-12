@@ -1,4 +1,4 @@
-import { LetterType } from "../../models/api/LetterType";
+import { AbcType } from "../../models/enums/AbcTypes";
 import { MenuItemProps } from "../../models/props/MenuItemProps";
 import {
   renderKatakanaSubMenuItem,
@@ -6,33 +6,33 @@ import {
   renderKanjiSubMenuItem,
 } from "../common/renderers/LetterRenderer";
 
-export function order(type: LetterType, categories: string[]): MenuItemProps {
+export function order(type: AbcType, categories: string[]): MenuItemProps {
   switch (type) {
-    case LetterType.KANJI:
+    case AbcType.KANJI:
       return {
         categories,
         renderSubMenuItem: renderKanjiSubMenuItem,
         abcTypeCss: type.toLowerCase(),
         abcType: type.toLowerCase(),
-        subMenuItemHeader: type,
+        subMenuItemHeader: "Kanji",
         menuItemText: "語",
       };
-    case LetterType.HIRAGANA:
+    case AbcType.HIRAGANA:
       return {
         categories,
         renderSubMenuItem: renderHiraganaSubMenuItem,
         abcTypeCss: type.toLowerCase(),
         abcType: type.toLowerCase(),
-        subMenuItemHeader: type,
+        subMenuItemHeader: "Hiragana",
         menuItemText: "あ",
       };
-    case LetterType.KATAKANA:
+    case AbcType.KATAKANA:
       return {
         categories,
         renderSubMenuItem: renderKatakanaSubMenuItem,
         abcTypeCss: type.toLowerCase(),
         abcType: type.toLowerCase(),
-        subMenuItemHeader: type,
+        subMenuItemHeader: "Katakana",
         menuItemText: "ア",
       };
   }

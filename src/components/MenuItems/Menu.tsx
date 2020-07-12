@@ -2,10 +2,7 @@ import React, { useEffect } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { bindActionCreators } from "redux";
 import { RootState } from "../../store";
-import { LetterType } from "../../models/api/LetterType";
-import * as kanjiActions from "../../store/kanjiCategories/actions";
-import * as hiraganaActions from "../../store/hiraganaCategories/thunk";
-import * as katakanaActions from "../../store/katakanaCategories/thunk";
+import * as letterActions from "../../store/letterCategories/actions";
 import * as menuItemFactory from "./MenuItemPropsFactory";
 import JapanFlag from "../JapanFlag";
 import MenuItem from "./MenuItem";
@@ -13,24 +10,16 @@ import SettingsMenuItem from "./SettingsMenuItem";
 import { AbcType } from "../../models/enums/AbcTypes";
 
 const mapState = (state: RootState) => ({
-  kanjiCategories: state.kanjiCategories,
-  hiraganaCategories: state.hiraganaCategories,
-  katakanaCategories: state.katakanaCategories,
+  kanjiCategories: state.letterCategories.kanjiCategories,
+  hiraganaCategories: state.letterCategories.hiraganaCategories,
+  katakanaCategories: state.letterCategories.katakanaCategories,
 });
 
 function mapDispatch(dispatch) {
   return {
     actions: {
-      loadKanjiCategories: bindActionCreators(
-        kanjiActions.loadCategories,
-        dispatch
-      ),
-      loadHiraganaCategories: bindActionCreators(
-        hiraganaActions.loadCategories,
-        dispatch
-      ),
-      loadKatakanaCategories: bindActionCreators(
-        katakanaActions.loadCategories,
+      loadCategories: bindActionCreators(
+        letterActions.loadCategories,
         dispatch
       ),
     },
@@ -42,62 +31,27 @@ const connector = connect(mapState, mapDispatch);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 const Menu = (props: PropsFromRedux) => {
-  //loadCategories(props.kanjiCategories, props.actions.loadKanjiCategories);
-  /*
-  loadCategories(
-    props.katakanaCategories,
-    props.actions.loadKatakanaCategories
-  );
-  loadCategories(
-    props.hiraganaCategories,
-    props.actions.loadHiraganaCategories
-  );
-  */
-
-  /*
-  if (props.kanjiCategories.length === 0) {
-    props.actions.loadKanjiCategories(AbcType.KANJI);
-  }
-  */
-
   useEffect(() => {
-    props.actions.loadKanjiCategories(AbcType.KANJI);
+    props.actions.loadCategories(AbcType.KANJI);
+    props.actions.loadCategories(AbcType.KATAKANA);
+    props.actions.loadCategories(AbcType.HIRAGANA);
   }, []);
 
   return (
     <div className="nav">
       <JapanFlag />
       <MenuItem
-        {...menuItemFactory.order(LetterType.KANJI, props.kanjiCategories)}
-      />
-      {/*
-      <MenuItem
-        {...menuItemFactory.order(
-          LetterType.HIRAGANA,
-          props.hiraganaCategories
-        )}
+        {...menuItemFactory.order(AbcType.KANJI, props.kanjiCategories)}
       />
       <MenuItem
-        {...menuItemFactory.order(
-          LetterType.KATAKANA,
-          props.katakanaCategories
-        )}
+        {...menuItemFactory.order(AbcType.HIRAGANA, props.hiraganaCategories)}
+      />
+      <MenuItem
+        {...menuItemFactory.order(AbcType.KATAKANA, props.katakanaCategories)}
       />
       <SettingsMenuItem />
-        */}
     </div>
   );
 };
-
-function loadCategories(
-  categories: string[],
-  loadCategories: () => void | any
-): void {
-  if (categories.length === 0) {
-    loadCategories().catch((error) => {
-      alert("Loading categories failed" + error);
-    });
-  }
-}
 
 export default connector(Menu);
