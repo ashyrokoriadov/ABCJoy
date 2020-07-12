@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { bindActionCreators } from "redux";
 import { RootState } from "../../store";
 import { LetterType } from "../../models/api/LetterType";
-import * as kanjiActions from "../../store/kanjiCategories/thunk";
+import * as kanjiActions from "../../store/kanjiCategories/actions";
 import * as hiraganaActions from "../../store/hiraganaCategories/thunk";
 import * as katakanaActions from "../../store/katakanaCategories/thunk";
 import * as menuItemFactory from "./MenuItemPropsFactory";
 import JapanFlag from "../JapanFlag";
 import MenuItem from "./MenuItem";
 import SettingsMenuItem from "./SettingsMenuItem";
+import { AbcType } from "../../models/enums/AbcTypes";
 
 const mapState = (state: RootState) => ({
   kanjiCategories: state.kanjiCategories,
@@ -41,7 +42,8 @@ const connector = connect(mapState, mapDispatch);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 const Menu = (props: PropsFromRedux) => {
-  loadCategories(props.kanjiCategories, props.actions.loadKanjiCategories);
+  //loadCategories(props.kanjiCategories, props.actions.loadKanjiCategories);
+  /*
   loadCategories(
     props.katakanaCategories,
     props.actions.loadKatakanaCategories
@@ -50,6 +52,17 @@ const Menu = (props: PropsFromRedux) => {
     props.hiraganaCategories,
     props.actions.loadHiraganaCategories
   );
+  */
+
+  /*
+  if (props.kanjiCategories.length === 0) {
+    props.actions.loadKanjiCategories(AbcType.KANJI);
+  }
+  */
+
+  useEffect(() => {
+    props.actions.loadKanjiCategories(AbcType.KANJI);
+  }, []);
 
   return (
     <div className="nav">
@@ -57,6 +70,7 @@ const Menu = (props: PropsFromRedux) => {
       <MenuItem
         {...menuItemFactory.order(LetterType.KANJI, props.kanjiCategories)}
       />
+      {/*
       <MenuItem
         {...menuItemFactory.order(
           LetterType.HIRAGANA,
@@ -70,6 +84,7 @@ const Menu = (props: PropsFromRedux) => {
         )}
       />
       <SettingsMenuItem />
+        */}
     </div>
   );
 };
