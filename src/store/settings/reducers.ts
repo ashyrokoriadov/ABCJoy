@@ -1,4 +1,10 @@
-import { LOAD_SETTINGS, SAVE_SETTINGS, SettingsActionTypes } from "./types";
+import {
+  LOAD_SETTINGS,
+  SETTINGS_LOADED,
+  SAVE_SETTINGS,
+  SETTINGS_SAVED,
+  SettingsActionTypes,
+} from "./types";
 import { QuizSettings } from "../../models/QuizSettings";
 
 const initialState: QuizSettings = {
@@ -12,7 +18,9 @@ export default function settingsReducer(
 ) {
   switch (action.type) {
     case LOAD_SETTINGS:
+    case SETTINGS_LOADED:
       return state;
+    case SETTINGS_SAVED:
     case SAVE_SETTINGS:
       return action.payload;
     default:

@@ -3,8 +3,8 @@ import Settings from "./Settings";
 import { connect, ConnectedProps } from "react-redux";
 import { bindActionCreators } from "redux";
 import { RootState } from "../../store";
-import * as settingsAction from "../../store/settings/thunk";
-import * as messageActions from "../../store/messages/thunk";
+import * as settingsAction from "../../store/settings/actions";
+import * as messageActions from "../../store/messages/actions";
 import { QuizSettings } from "../../models/QuizSettings";
 import { MessageType } from "../../models/enums/MessageType";
 
@@ -16,14 +16,17 @@ function mapDispatch(dispatch) {
   return {
     actions: {
       loadQuizSettings: bindActionCreators(
-        settingsAction.loadQuizSettings,
+        settingsAction.loadSettings,
         dispatch
       ),
       saveQuizSettings: bindActionCreators(
-        settingsAction.saveQuizSettings,
+        settingsAction.saveSettings,
         dispatch
       ),
-      showMessage: bindActionCreators(messageActions.showMessage, dispatch),
+      showInfoMessage: bindActionCreators(
+        messageActions.showInfoMessage,
+        dispatch
+      ),
     },
   };
 }
@@ -39,7 +42,7 @@ const SettingsModel = (props: PropsFromRedux) => {
 
   function handleOk(settings: QuizSettings): void {
     props.actions.saveQuizSettings(settings);
-    props.actions.showMessage("Ustawienia zostały zapisane", MessageType.INFO);
+    props.actions.showInfoMessage("Ustawienia zostały zapisane");
   }
 
   return <Settings {...{ settings: props.settings, handleOk }} />;

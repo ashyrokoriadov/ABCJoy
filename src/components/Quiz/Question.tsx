@@ -4,10 +4,9 @@ import { bindActionCreators } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "../../store";
 import * as questionActions from "../../store/question/thunk";
-import * as messageActions from "../../store/messages/thunk";
+import * as messageActions from "../../store/messages/actions";
 import * as correctAnswersActions from "../../store/correctAnswer/thunk";
 import * as timerActions from "../../store/quizTimer/thunk";
-import { MessageType } from "../../models/enums/MessageType";
 import { Letter } from "../../models/Letter";
 import { KanjiLetter } from "../../models/KanjiLetter";
 import { KanaQuestionProps } from "../../models/props/KanaQuestionProps";
@@ -30,7 +29,10 @@ function mapDispatch(dispatch) {
         questionActions.setQuestionIndex,
         dispatch
       ),
-      showMessage: bindActionCreators(messageActions.showMessage, dispatch),
+      showInfoMessage: bindActionCreators(
+        messageActions.showInfoMessage,
+        dispatch
+      ),
       setCorrectAnswersCount: bindActionCreators(
         correctAnswersActions.saveCorrectAnswersCount,
         dispatch
@@ -65,7 +67,7 @@ const Question = (props: PropsFromRedux) => {
       actions.setQuestionIndex(questionIndex);
       if (questionIndex == quiz.length) {
         actions.pauseTimer();
-        actions.showMessage("Quiz został zakończony", MessageType.INFO);
+        actions.showInfoMessage("Quiz został zakończony");
       }
     }
   });

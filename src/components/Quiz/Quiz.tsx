@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { connect, ConnectedProps } from "react-redux";
 import { bindActionCreators } from "redux";
 import { RootState } from "../../store";
-import * as settingsAction from "../../store/settings/thunk";
+import * as settingsAction from "../../store/settings/actions";
 import * as quizActions from "../../store/quiz/thunk";
 import * as questionActions from "../../store/question/thunk";
 import * as quizTypeActions from "../../store/quizType/thunk";
@@ -21,7 +21,7 @@ function mapDispatch(dispatch) {
     actions: {
       loadQuiz: bindActionCreators(quizActions.loadQuiz, dispatch),
       loadQuizSettings: bindActionCreators(
-        settingsAction.loadQuizSettings,
+        settingsAction.loadSettings,
         dispatch
       ),
       setQuestionIndex: bindActionCreators(
