@@ -1,5 +1,15 @@
-import { QUIZ_TYPE_SET, QuizTypeActionTypes } from "./types";
+import {
+  SET_QUIZ_TYPE,
+  SET_QUIZ_TYPE_SUCCESS,
+  QuizTypeActionTypes,
+} from "./types";
 
-export function quizLoaded(elementToRender: JSX.Element): QuizTypeActionTypes {
-  return { type: QUIZ_TYPE_SET, payload: elementToRender };
+export function setQuizType(abc: string, type: string): QuizTypeActionTypes {
+  return { type: SET_QUIZ_TYPE, payload: { abc, type } };
+}
+
+export function setQuizTypeSuccess(
+  elementToRender: JSX.Element
+): QuizTypeActionTypes {
+  return { type: SET_QUIZ_TYPE_SUCCESS, payload: elementToRender };
 }

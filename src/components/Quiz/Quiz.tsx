@@ -4,9 +4,9 @@ import { connect, ConnectedProps } from "react-redux";
 import { bindActionCreators } from "redux";
 import { RootState } from "../../store";
 import * as settingsAction from "../../store/settings/actions";
-import * as quizActions from "../../store/quiz/thunk";
-import * as questionActions from "../../store/question/thunk";
-import * as quizTypeActions from "../../store/quizType/thunk";
+import * as quizActions from "../../store/quiz/actions";
+import * as questionActions from "../../store/question/actions";
+import * as quizTypeActions from "../../store/quizType/actions";
 import QuizStatisticsView from "./QuizStatistics";
 import QuizQuestion from "./Question";
 
@@ -28,10 +28,7 @@ function mapDispatch(dispatch) {
         questionActions.setQuestionIndex,
         dispatch
       ),
-      setQuizType: bindActionCreators(
-        quizTypeActions.dispatchSetQuizType,
-        dispatch
-      ),
+      setQuizType: bindActionCreators(quizTypeActions.setQuizType, dispatch),
     },
   };
 }
@@ -60,7 +57,7 @@ const Quiz = (props: PropsFromRedux) => {
   return (
     <div id="quiz">
       <QuizQuestion />
-      <QuizStatisticsView />
+      {/*<QuizStatisticsView />*/}
     </div>
   );
 };

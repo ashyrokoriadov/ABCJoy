@@ -1,4 +1,8 @@
-import { QUIZ_TYPE_SET, QuizTypeActionTypes } from "./types";
+import {
+  SET_QUIZ_TYPE,
+  SET_QUIZ_TYPE_SUCCESS,
+  QuizTypeActionTypes,
+} from "./types";
 import { setQuizType } from "../../components/common/renderers/QuizTypeRenderer";
 import { AbcType } from "../../models/enums/AbcTypes";
 
@@ -9,7 +13,8 @@ export default function quizTypeReducer(
   action: QuizTypeActionTypes
 ) {
   switch (action.type) {
-    case QUIZ_TYPE_SET:
+    case SET_QUIZ_TYPE:
+    case SET_QUIZ_TYPE_SUCCESS:
       return action.payload;
     default:
       return state;

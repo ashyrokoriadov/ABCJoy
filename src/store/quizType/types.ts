@@ -1,8 +1,16 @@
-export const QUIZ_TYPE_SET = "QUIZ_TYPE_SET";
+import { SetQuizTypeParameters } from "../../models/SetQuizTypeParameters";
 
-interface QuizTypeSet {
-  type: typeof QUIZ_TYPE_SET;
+export const SET_QUIZ_TYPE = "SET_QUIZ_TYPE";
+export const SET_QUIZ_TYPE_SUCCESS = "SET_QUIZ_TYPE_SUCCESS";
+
+interface SetQuizType {
+  type: typeof SET_QUIZ_TYPE;
+  payload: SetQuizTypeParameters;
+}
+
+interface SetQuizTypeSuccess {
+  type: typeof SET_QUIZ_TYPE_SUCCESS;
   payload: JSX.Element;
 }
 
-export type QuizTypeActionTypes = QuizTypeSet;
+export type QuizTypeActionTypes = SetQuizType | SetQuizTypeSuccess;

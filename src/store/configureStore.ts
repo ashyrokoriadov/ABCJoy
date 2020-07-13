@@ -5,6 +5,9 @@ import createSagaMiddleware from "redux-saga";
 import letterCategoriesSaga from "./letterCategories/sagas";
 import settingsSaga from "./settings/sagas";
 import messagessaga from "./messages/sagas";
+import quizSaga from "./quiz/sagas";
+import questionSaga from "./question/sagas";
+import correctAnswerSaga from "./question/sagas";
 //import thunk from "redux-thunk";
 
 export default function configureStore() {
@@ -22,5 +25,8 @@ export default function configureStore() {
   sagaMiddleware.run(letterCategoriesSaga);
   sagaMiddleware.run(settingsSaga);
   sagaMiddleware.run(messagessaga);
+  sagaMiddleware.run(quizSaga);
+  sagaMiddleware.run(questionSaga);
+  sagaMiddleware.run(correctAnswerSaga);
   return store;
 }

@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "../../store";
-import * as questionActions from "../../store/question/thunk";
+import * as questionActions from "../../store/question/actions";
 import * as messageActions from "../../store/messages/actions";
-import * as correctAnswersActions from "../../store/correctAnswer/thunk";
+import * as correctAnswersActions from "../../store/correctAnswer/actions";
 import * as timerActions from "../../store/quizTimer/thunk";
 import { Letter } from "../../models/Letter";
 import { KanjiLetter } from "../../models/KanjiLetter";
@@ -34,10 +34,10 @@ function mapDispatch(dispatch) {
         dispatch
       ),
       setCorrectAnswersCount: bindActionCreators(
-        correctAnswersActions.saveCorrectAnswersCount,
+        correctAnswersActions.setCounter,
         dispatch
       ),
-      pauseTimer: bindActionCreators(timerActions.pauseTimer, dispatch),
+      //pauseTimer: bindActionCreators(timerActions.pauseTimer, dispatch),
     },
   };
 }
@@ -66,7 +66,7 @@ const Question = (props: PropsFromRedux) => {
     if (props.quiz != undefined && props.quiz.length > 0) {
       actions.setQuestionIndex(questionIndex);
       if (questionIndex == quiz.length) {
-        actions.pauseTimer();
+        //actions.pauseTimer();
         actions.showInfoMessage("Quiz został zakończony");
       }
     }
