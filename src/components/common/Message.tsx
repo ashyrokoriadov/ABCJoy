@@ -25,7 +25,7 @@ function mapDispatch(dispatch) {
         dispatch
       ),
       setQuestionIndex: bindActionCreators(
-        questionActions.setQuestionIndexSuccess,
+        questionActions.setQuestionIndex,
         dispatch
       ),
       resetCorrectAnswersCount: bindActionCreators(

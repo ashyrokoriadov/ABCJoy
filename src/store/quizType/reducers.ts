@@ -1,8 +1,4 @@
-import {
-  SET_QUIZ_TYPE,
-  SET_QUIZ_TYPE_SUCCESS,
-  QuizTypeActionTypes,
-} from "./types";
+import { SET_QUIZ_TYPE_SUCCESS, QuizTypeActionTypes } from "./types";
 import { setQuizType } from "../../components/common/renderers/QuizTypeRenderer";
 import { AbcType } from "../../models/enums/AbcTypes";
 

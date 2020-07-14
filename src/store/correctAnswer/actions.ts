@@ -14,15 +14,3 @@ export function setCounter(
 export function resetCounter(): CorrectAnswerActionTypes {
   return { type: RESET_CORRECT_ANSWER_COUNT };
 }
-
-export function setCounterSuccess(
-  correctAnswerCount: number
-): CorrectAnswerActionTypes {
-  return {
-    type: INCREMENT_CORRECT_ANSWER_COUNT_SUCCESS,
-    payload: correctAnswerCount,
-  };
-}
-export function resetCounterSuccess(): CorrectAnswerActionTypes {
-  return { type: RESET_CORRECT_ANSWER_COUNT_SUCCESS };
-}

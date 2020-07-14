@@ -1,8 +1,6 @@
 import { Message, MessageTypes } from "../../models/Message";
 import {
-  DISPLAY_INFO_MESSAGE,
-  INFO_MESSAGE_DISPAYED,
-  CLOSE_MESSAGE,
+  INFO_MESSAGE_DISPLAYED,
   MESSAGE_CLOSED,
   MessageActionTypes,
 } from "./types";
@@ -20,14 +18,6 @@ export default function messageReducer(
   let message: Message;
 
   switch (action.type) {
-    case DISPLAY_INFO_MESSAGE:
-      message = {
-        text: action.payload,
-        messageType: MessageTypes.INFO.toLowerCase(),
-        shouldDisplay: true,
-      };
-      return message;
-    case CLOSE_MESSAGE:
     case MESSAGE_CLOSED:
       message = {
         text: "",
@@ -35,7 +25,13 @@ export default function messageReducer(
         shouldDisplay: false,
       };
       return message;
-    case INFO_MESSAGE_DISPAYED:
+    case INFO_MESSAGE_DISPLAYED:
+      message = {
+        text: action.payload,
+        messageType: MessageTypes.INFO.toLowerCase(),
+        shouldDisplay: true,
+      };
+      return message;
     default:
       return state;
   }

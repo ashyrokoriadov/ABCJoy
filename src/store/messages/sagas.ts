@@ -1,14 +1,14 @@
 import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 import {
   DISPLAY_INFO_MESSAGE,
-  INFO_MESSAGE_DISPAYED,
+  INFO_MESSAGE_DISPLAYED,
   CLOSE_MESSAGE,
   MESSAGE_CLOSED,
 } from "./types";
 
 function* showMessage(action) {
   try {
-    yield put({ type: INFO_MESSAGE_DISPAYED, payload: action.payload });
+    yield put({ type: INFO_MESSAGE_DISPLAYED, payload: action.payload });
   } catch (error) {
     throw error;
   }

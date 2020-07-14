@@ -1,6 +1,6 @@
 export const DISPLAY_INFO_MESSAGE = "DISPLAY_INFO_MESSAGE";
 export const CLOSE_MESSAGE = "CLOSE_MESSAGE";
-export const INFO_MESSAGE_DISPAYED = "INFO_MESSAGE_DISPAYED";
+export const INFO_MESSAGE_DISPLAYED = "INFO_MESSAGE_DISPLAYED";
 export const MESSAGE_CLOSED = "MESSAGE_CLOSED";
 
 interface ShowInfoMessage {
@@ -9,7 +9,8 @@ interface ShowInfoMessage {
 }
 
 interface InfoMessageShown {
-  type: typeof INFO_MESSAGE_DISPAYED;
+  type: typeof INFO_MESSAGE_DISPLAYED;
+  payload: string;
 }
 
 interface RequestCloseMessage {

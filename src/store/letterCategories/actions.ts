@@ -25,15 +25,6 @@ export function loadKatakanaCategoriesSuccess(
   };
 }
 
-export function loadHiraganaCategoriesSuccess(
-  categories: string[]
-): LetterCategoriesActionTypes {
-  return {
-    type: LOAD_HIRAGANA_CATEGORIES_SUCCESS,
-    payload: categories,
-  };
-}
-
 export function loadCategories(abcType: AbcType): LetterCategoriesActionTypes {
   return {
     type: LOAD_LETTER_CATEGORIES,

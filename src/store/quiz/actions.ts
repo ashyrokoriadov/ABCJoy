@@ -1,9 +1,4 @@
-import { Quiz } from "../../models/Quiz";
-import { LOAD_QUIZ_SUCCESS, QuizActionTypes, LOAD_QUIZ } from "./types";
-
-export function quizLoaded(quiz: Quiz[]): QuizActionTypes {
-  return { type: LOAD_QUIZ_SUCCESS, payload: quiz };
-}
+import { QuizActionTypes, LOAD_QUIZ } from "./types";
 
 export function loadQuiz(
   abc: string,

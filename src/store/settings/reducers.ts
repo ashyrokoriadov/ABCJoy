@@ -17,11 +17,9 @@ export default function settingsReducer(
   action: SettingsActionTypes
 ) {
   switch (action.type) {
-    case LOAD_SETTINGS:
     case SETTINGS_LOADED:
       return state;
     case SETTINGS_SAVED:
-    case SAVE_SETTINGS:
       return action.payload;
     default:
       return state;
