@@ -5,7 +5,6 @@ import {
   RESET_CORRECT_ANSWER_COUNT_SUCCESS,
   INCREMENT_CORRECT_ANSWER_COUNT_SUCCESS,
 } from "./types";
-import * as quizApi from "../../api/quizApi";
 
 function* incrementCorrectAnswerCount(action) {
   try {

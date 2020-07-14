@@ -57,7 +57,7 @@ const Quiz = (props: PropsFromRedux) => {
   return (
     <div id="quiz">
       <QuizQuestion />
-      {/*<QuizStatisticsView />*/}
+      <QuizStatisticsView />
     </div>
   );
 };

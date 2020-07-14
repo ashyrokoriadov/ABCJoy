@@ -8,6 +8,7 @@ import messagessaga from "./messages/sagas";
 import quizSaga from "./quiz/sagas";
 import questionSaga from "./question/sagas";
 import correctAnswerSaga from "./question/sagas";
+import quizTimerSaga from "./quizTimer/sagas";
 //import thunk from "redux-thunk";
 
 export default function configureStore() {
@@ -28,5 +29,6 @@ export default function configureStore() {
   sagaMiddleware.run(quizSaga);
   sagaMiddleware.run(questionSaga);
   sagaMiddleware.run(correctAnswerSaga);
+  sagaMiddleware.run(quizTimerSaga);
   return store;
 }

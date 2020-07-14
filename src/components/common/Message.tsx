@@ -32,7 +32,7 @@ function mapDispatch(dispatch) {
         correctAnswersActions.resetCounter,
         dispatch
       ),
-      resetTimer: bindActionCreators(timerActions.dispatchResetTimer, dispatch),
+      resetTimer: bindActionCreators(timerActions.resetTimer, dispatch),
     },
   };
 }

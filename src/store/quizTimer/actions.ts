@@ -6,18 +6,18 @@ import {
   QuizTimerActionTypes,
 } from "./types";
 
-export function dispatchStartTimer(): QuizTimerActionTypes {
+export function startTimer(): QuizTimerActionTypes {
   return { type: START_QUIZ_TIMER };
 }
 
-export function dispatchPauseTimer(): QuizTimerActionTypes {
+export function pauseTimer(): QuizTimerActionTypes {
   return { type: PAUSE_QUIZ_TIMER };
 }
 
-export function dispatchResetTimer(): QuizTimerActionTypes {
+export function resetTimer(): QuizTimerActionTypes {
   return { type: RESET_QUIZ_TIMER };
 }
 
-export function dispatchIncrementTimer(newValue: number): QuizTimerActionTypes {
+export function incrementTimer(newValue: number): QuizTimerActionTypes {
   return { type: INCREMENT_QUIZ_TIMER, payload: newValue };
 }

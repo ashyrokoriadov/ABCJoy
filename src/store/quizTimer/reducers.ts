@@ -1,8 +1,8 @@
 import {
-  START_QUIZ_TIMER,
-  PAUSE_QUIZ_TIMER,
-  RESET_QUIZ_TIMER,
-  INCREMENT_QUIZ_TIMER,
+  QUIZ_TIMER_STARTED,
+  QUIZ_TIMER_PAUSED,
+  QUIZ_TIMER_INCREMENTED,
+  QUIZ_TIMER_RESET,
   QuizTimerActionTypes,
 } from "./types";
 import { QuizTimerState } from "../../models/QuizTimerState";
@@ -17,22 +17,22 @@ export default function settingsReducer(
   action: QuizTimerActionTypes
 ) {
   switch (action.type) {
-    case START_QUIZ_TIMER:
+    case QUIZ_TIMER_STARTED:
       return {
         isActive: true,
         value: 0,
       };
-    case PAUSE_QUIZ_TIMER:
+    case QUIZ_TIMER_PAUSED:
       return {
         isActive: false,
         value: state.value,
       };
-    case INCREMENT_QUIZ_TIMER:
+    case QUIZ_TIMER_INCREMENTED:
       return {
         isActive: state.isActive,
         value: action.payload,
       };
-    case RESET_QUIZ_TIMER:
+    case QUIZ_TIMER_RESET:
       return {
         isActive: false,
         value: 0,

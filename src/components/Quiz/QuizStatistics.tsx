@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { RootState } from "../../store";
 import { connect, ConnectedProps } from "react-redux";
-import * as timerActions from "../../store/quizTimer/thunk";
+import * as timerActions from "../../store/quizTimer/actions";
 import { bindActionCreators } from "redux";
 import QuizTimer from "../common/Timer";
 

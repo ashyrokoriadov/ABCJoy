@@ -6,7 +6,7 @@ import { RootState } from "../../store";
 import * as questionActions from "../../store/question/actions";
 import * as messageActions from "../../store/messages/actions";
 import * as correctAnswersActions from "../../store/correctAnswer/actions";
-import * as timerActions from "../../store/quizTimer/thunk";
+import * as timerActions from "../../store/quizTimer/actions";
 import { Letter } from "../../models/Letter";
 import { KanjiLetter } from "../../models/KanjiLetter";
 import { KanaQuestionProps } from "../../models/props/KanaQuestionProps";
@@ -37,7 +37,7 @@ function mapDispatch(dispatch) {
         correctAnswersActions.setCounter,
         dispatch
       ),
-      //pauseTimer: bindActionCreators(timerActions.pauseTimer, dispatch),
+      pauseTimer: bindActionCreators(timerActions.pauseTimer, dispatch),
     },
   };
 }
@@ -66,7 +66,7 @@ const Question = (props: PropsFromRedux) => {
     if (props.quiz != undefined && props.quiz.length > 0) {
       actions.setQuestionIndex(questionIndex);
       if (questionIndex == quiz.length) {
-        //actions.pauseTimer();
+        actions.pauseTimer();
         actions.showInfoMessage("Quiz został zakończony");
       }
     }

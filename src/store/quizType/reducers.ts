@@ -13,7 +13,6 @@ export default function quizTypeReducer(
   action: QuizTypeActionTypes
 ) {
   switch (action.type) {
-    case SET_QUIZ_TYPE:
     case SET_QUIZ_TYPE_SUCCESS:
       return action.payload;
     default:
