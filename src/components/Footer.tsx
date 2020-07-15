@@ -13,14 +13,40 @@ export default function Footer(): JSX.Element {
           Andriy Shyrokoryadov
         </a>
         <br />
-        Created with&nbsp;
-        <a
-          href="https://reactjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          React
-        </a>
+        <p>
+          Created with&nbsp;
+          <a
+            href="https://reactjs.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            React
+          </a>
+          ,&nbsp;
+          <a
+            href="https://www.typescriptlang.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            TypeScript
+          </a>
+          ,&nbsp;
+          <a
+            href="https://redux.js.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Redux
+          </a>
+          ,&nbsp;
+          <a
+            href="https://redux-saga.js.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Redux-Saga
+          </a>
+        </p>
       </span>
     </div>
   );
