@@ -15,7 +15,7 @@ export function setQuizType(abc: AbcType, type: string): JSX.Element {
     case AbcType.KATAKANA.toLowerCase():
       return renderKana(mapCategoryToKatakana(type), "statistics-value-text");
     case AbcType.KANJI.toLowerCase():
-      return renderKanji(mapCategoryToFa(type));
+      return renderKanji(type);
     default:
       return <></>;
   }
