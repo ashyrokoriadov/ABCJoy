@@ -27,7 +27,9 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      "process.env.API_URL": JSON.stringify("https://localhost:44342/api"),
+      "process.env.API_URL": JSON.stringify(
+        "http://andrey-shyrokoriadov.hostingasp.pl/api"
+      ),
     }),
     new HtmlWebpackPlugin({
       template: "src/index.html",
@@ -36,16 +38,17 @@ module.exports = {
   ],
   module: {
     rules: [
-      /*
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ["babel-loader", "eslint-loader"],
-      },
-      */
       {
         test: /(\.css)$/,
         use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.(png|svg|jpg|gif|ttf|eot)$/,
+        use: ["file-loader"],
+      },
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: "url-loader?limit=10000&mimetype=application/font-woff",
       },
       {
         test: /\.(t|j)sx?$/,
