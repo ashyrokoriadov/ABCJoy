@@ -27,9 +27,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      "process.env.API_URL": JSON.stringify(
-        "http://andrey-shyrokoriadov.hostingasp.pl/api"
-      ),
+      "process.env.API_URL": JSON.stringify("https://localhost:44342/api"),
     }),
     new HtmlWebpackPlugin({
       template: "src/index.html",
