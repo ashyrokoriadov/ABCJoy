@@ -1,5 +1,6 @@
 export enum LetterType {
-  KANJI = "Kanji",
+  KANJI_PHRASES = "KanjiPhrases",
+  KANJI_SIGNS = "KanjiSigns",
   HIRAGANA = "Hiragana",
   KATAKANA = "Katakana",
 }

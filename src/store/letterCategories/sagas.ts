@@ -13,7 +13,7 @@ function* fetchCategories(action) {
     const categories = yield call(LettersApi.getCategories, action.payload);
 
     switch (action.payload) {
-      case AbcType.KANJI:
+      case AbcType.KANJI_PHRASES:
         yield put({ type: LOAD_KANJI_CATEGORIES_SUCCESS, payload: categories });
         break;
       case AbcType.KATAKANA:

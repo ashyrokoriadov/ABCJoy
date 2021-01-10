@@ -7,7 +7,8 @@ import {
 import { LetterCategoriesReducerState } from "../../models/states/LetterCategoriesReducerState";
 
 const initialState: LetterCategoriesReducerState = {
-  kanjiCategories: [],
+  kanjiSignsCategories: [],
+  kanjiPhrasesCategories: [],
   katakanaCategories: [],
   hiraganaCategories: [],
 };
@@ -19,21 +20,24 @@ export default function kanjiCategoriesReducer(
   switch (action.type) {
     case LOAD_KANJI_CATEGORIES_SUCCESS:
       var newState = {
-        kanjiCategories: action.payload,
+        kanjiSignsCategories: state.kanjiSignsCategories,
+        kanjiPhrasesCategories: action.payload,
         katakanaCategories: state.katakanaCategories,
         hiraganaCategories: state.hiraganaCategories,
       };
       return newState;
     case LOAD_KATAKANA_CATEGORIES_SUCCESS:
       var newState = {
-        kanjiCategories: state.kanjiCategories,
+        kanjiSignsCategories: state.kanjiSignsCategories,
+        kanjiPhrasesCategories: state.kanjiPhrasesCategories,
         katakanaCategories: action.payload,
         hiraganaCategories: state.hiraganaCategories,
       };
       return newState;
     case LOAD_HIRAGANA_CATEGORIES_SUCCESS:
       var newState = {
-        kanjiCategories: state.kanjiCategories,
+        kanjiSignsCategories: state.kanjiSignsCategories,
+        kanjiPhrasesCategories: state.kanjiPhrasesCategories,
         katakanaCategories: state.katakanaCategories,
         hiraganaCategories: action.payload,
       };

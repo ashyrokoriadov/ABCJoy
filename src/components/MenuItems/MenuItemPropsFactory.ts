@@ -8,13 +8,13 @@ import {
 
 export function order(type: AbcType, categories: string[]): MenuItemProps {
   switch (type) {
-    case AbcType.KANJI:
+    case AbcType.KANJI_PHRASES:
       return {
         categories,
         renderSubMenuItem: renderKanjiSubMenuItem,
         abcTypeCss: type.toLowerCase(),
         abcType: type.toLowerCase(),
-        subMenuItemHeader: "Kanji",
+        subMenuItemHeader: "Kanji phrases",
         menuItemText: "語",
       };
     case AbcType.HIRAGANA:
@@ -34,6 +34,15 @@ export function order(type: AbcType, categories: string[]): MenuItemProps {
         abcType: type.toLowerCase(),
         subMenuItemHeader: "Katakana",
         menuItemText: "ア",
+      };
+    case AbcType.KANJI_SIGNS:
+      return {
+        categories,
+        renderSubMenuItem: renderKanjiSubMenuItem,
+        abcTypeCss: type.toLowerCase(),
+        abcType: type.toLowerCase(),
+        subMenuItemHeader: "Kanji signs",
+        menuItemText: "語",
       };
   }
 }

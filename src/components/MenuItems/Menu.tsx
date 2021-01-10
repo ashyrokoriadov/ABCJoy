@@ -10,7 +10,8 @@ import SettingsMenuItem from "./SettingsMenuItem";
 import { AbcType } from "../../models/enums/AbcTypes";
 
 const mapState = (state: RootState) => ({
-  kanjiCategories: state.letterCategories.kanjiCategories,
+  kanjiSignsCategories: state.letterCategories.kanjiSignsCategories,
+  kanjiPhrasesCategories: state.letterCategories.kanjiPhrasesCategories,
   hiraganaCategories: state.letterCategories.hiraganaCategories,
   katakanaCategories: state.letterCategories.katakanaCategories,
 });
@@ -32,7 +33,8 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 const Menu = (props: PropsFromRedux) => {
   useEffect(() => {
-    props.actions.loadCategories(AbcType.KANJI);
+    props.actions.loadCategories(AbcType.KANJI_PHRASES);
+    props.actions.loadCategories(AbcType.KANJI_SIGNS);
     props.actions.loadCategories(AbcType.KATAKANA);
     props.actions.loadCategories(AbcType.HIRAGANA);
   }, []);
@@ -41,7 +43,16 @@ const Menu = (props: PropsFromRedux) => {
     <div className="nav">
       <JapanFlag />
       <MenuItem
-        {...menuItemFactory.order(AbcType.KANJI, props.kanjiCategories)}
+        {...menuItemFactory.order(
+          AbcType.KANJI_PHRASES,
+          props.kanjiPhrasesCategories
+        )}
+      />
+      <MenuItem
+        {...menuItemFactory.order(
+          AbcType.KANJI_SIGNS,
+          props.kanjiSignsCategories
+        )}
       />
       <MenuItem
         {...menuItemFactory.order(AbcType.HIRAGANA, props.hiraganaCategories)}

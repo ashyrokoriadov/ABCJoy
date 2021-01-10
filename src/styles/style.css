@@ -17,7 +17,7 @@ a {
 .container {
   display: grid;
   grid-template-columns: 70px auto;
-  grid-template-rows: 70px 70px 70px 70px auto 50px;
+  grid-template-rows: 70px 70px 70px 70px 70px auto 50px;
 }
 
 .menu-item {
@@ -56,25 +56,32 @@ div#red-circle {
   border-radius: 17.5px;
 }
 
-.menu-item-kanji {
+.menu-item-kanjiphrases {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 2;
   grid-row-end: 3;
 }
 
-.menu-item-hiragana {
+.menu-item-kanjisigns {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 3;
   grid-row-end: 4;
 }
 
-.menu-item-katakana {
+.menu-item-hiragana {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 4;
   grid-row-end: 5;
+}
+
+.menu-item-katakana {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 5;
+  grid-row-end: 6;
 }
 
 .nav {
@@ -180,16 +187,21 @@ a:visited {
 
 div.menu-item-hiragana:hover ~ div.sliding-menu-hiragana,
 div.menu-item-katakana:hover ~ div.sliding-menu-katakana,
-div.menu-item-kanji:hover ~ div.sliding-menu-kanji {
+div.menu-item-kanjiphrases:hover ~ div.sliding-menu-kanjiphrases,
+div.menu-item-kanjisigns:hover ~ div.sliding-menu-kanjisigns {
   animation-fill-mode: forwards;
   animation-name: slideright;
   animation-duration: 1s;
 }
 
-div.menu-item-kanji:hover ~ div.sliding-menu-katakana,
-div.menu-item-kanji:hover ~ div.sliding-menu-hiragana,
-div.sliding-menu-kanji:hover ~ div.sliding-menu-katakana,
-div.sliding-menu-kanji:hover ~ div.sliding-menu-hiragana {
+div.menu-item-kanjiphrases:hover ~ div.sliding-menu-hiragana,
+div.menu-item-kanjiphrases:hover ~ div.sliding-menu-kanjisigns,
+div.sliding-menu-kanjiphrases:hover ~ div.sliding-menu-hiragana,
+div.sliding-menu-kanjiphrases:hover ~ div.sliding-menu-kanjisigns,
+div.menu-item-kanjisigns:hover ~ div.sliding-menu-hiragana,
+div.menu-item-kanjisigns:hover ~ div.sliding-menu-katakana,
+div.sliding-menu-kanjisigns:hover ~ div.sliding-menu-hiragana,
+div.sliding-menu-kanjisigns:hover ~ div.sliding-menu-katakana {
   visibility: hidden;
 }
 
@@ -217,20 +229,24 @@ div.sliding-menu-static {
   z-index: 0;
 }
 
-div.sliding-menu-kanji {
+div.sliding-menu-kanjiphrases {
   top: 71px;
 }
 
-div.sliding-menu-hiragana {
+div.sliding-menu-kanjisigns {
   top: 142px;
 }
 
-div.sliding-menu-katakana {
+div.sliding-menu-hiragana {
   top: 212px;
 }
 
-div.sliding-menu-settings {
+div.sliding-menu-katakana {
   top: 282px;
+}
+
+div.sliding-menu-settings {
+  top: 352px;
 }
 
 div.sub-menu-items {
@@ -242,7 +258,8 @@ div.sub-menu-items-empty {
   width: 0px;
 }
 
-div.sub-menu-items-kanji,
+div.sub-menu-items-kanjiphrases,
+div.sub-menu-items-kanjisigns,
 div.sub-menu-items-katakana,
 div.sub-menu-items-hiragana {
   grid-template-columns: 33% 33% 33%;
@@ -278,7 +295,7 @@ div.sliding-menu-header {
   display: flex;
   align-items: center;
   padding-left: 20px;
-  width: 130px;
+  width: 150px;
   height: 70px;
 }
 

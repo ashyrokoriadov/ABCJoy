@@ -1,5 +1,6 @@
 export interface LetterCategoriesReducerState {
-  kanjiCategories: string[];
+  kanjiSignsCategories: string[];
+  kanjiPhrasesCategories: string[];
   katakanaCategories: string[];
   hiraganaCategories: string[];
 }
