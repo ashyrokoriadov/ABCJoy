@@ -1,14 +1,22 @@
 import { AbcType } from "../../models/enums/AbcTypes";
 
-export const LOAD_KANJI_CATEGORIES_SUCCESS = "LOAD_KANJI_CATEGORIES_SUCCESS";
+export const LOAD_KANJI_PHRASES_CATEGORIES_SUCCESS =
+  "LOAD_KANJI_PHRASES_CATEGORIES_SUCCESS";
+export const LOAD_KANJI_SIGNS_CATEGORIES_SUCCESS =
+  "LOAD_KANJI_SIGNS_CATEGORIES_SUCCESS";
 export const LOAD_KATAKANA_CATEGORIES_SUCCESS =
   "LOAD_KATAKANA_CATEGORIES_SUCCESS";
 export const LOAD_HIRAGANA_CATEGORIES_SUCCESS =
   "LOAD_HIRAGANA_CATEGORIES_SUCCESS";
 export const LOAD_LETTER_CATEGORIES = "LOAD_LETTER_CATEGORIES";
 
-interface LoadKanjiCategoriesSuccess {
-  type: typeof LOAD_KANJI_CATEGORIES_SUCCESS;
+interface LoadKanjiPhrasesCategoriesSuccess {
+  type: typeof LOAD_KANJI_PHRASES_CATEGORIES_SUCCESS;
+  payload: string[];
+}
+
+interface LoadKanjiSignsCategoriesSuccess {
+  type: typeof LOAD_KANJI_SIGNS_CATEGORIES_SUCCESS;
   payload: string[];
 }
 
@@ -28,7 +36,8 @@ interface LoadCategories {
 }
 
 export type LetterCategoriesActionTypes =
-  | LoadKanjiCategoriesSuccess
+  | LoadKanjiPhrasesCategoriesSuccess
+  | LoadKanjiSignsCategoriesSuccess
   | LoadCategories
   | LoadKatakanaCategoriesSuccess
   | LoadHiraganaCategoriesSuccess;

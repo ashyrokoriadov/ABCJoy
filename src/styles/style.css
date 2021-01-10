@@ -235,6 +235,9 @@ div.sliding-menu-kanjiphrases {
 
 div.sliding-menu-kanjisigns {
   top: 142px;
+  left: -210px;
+  width: 430px;
+  grid-template-columns: 280px 150px;
 }
 
 div.sliding-menu-hiragana {
@@ -254,15 +257,22 @@ div.sub-menu-items {
   display: grid;
 }
 
+#sub-menu-kanjisigns div.sub-menu-items {
+  width: 280px;
+}
+
 div.sub-menu-items-empty {
   width: 0px;
 }
 
 div.sub-menu-items-kanjiphrases,
-div.sub-menu-items-kanjisigns,
 div.sub-menu-items-katakana,
 div.sub-menu-items-hiragana {
   grid-template-columns: 33% 33% 33%;
+}
+
+div.sub-menu-items-kanjisigns {
+  grid-template-columns: 25% 25% 25% 25%;
 }
 
 div.sliding-menu-katakana:not(:hover),

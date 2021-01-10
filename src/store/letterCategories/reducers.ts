@@ -1,5 +1,6 @@
 import {
-  LOAD_KANJI_CATEGORIES_SUCCESS,
+  LOAD_KANJI_PHRASES_CATEGORIES_SUCCESS,
+  LOAD_KANJI_SIGNS_CATEGORIES_SUCCESS,
   LOAD_KATAKANA_CATEGORIES_SUCCESS,
   LOAD_HIRAGANA_CATEGORIES_SUCCESS,
   LetterCategoriesActionTypes,
@@ -18,10 +19,18 @@ export default function kanjiCategoriesReducer(
   action: LetterCategoriesActionTypes
 ) {
   switch (action.type) {
-    case LOAD_KANJI_CATEGORIES_SUCCESS:
+    case LOAD_KANJI_PHRASES_CATEGORIES_SUCCESS:
       var newState = {
         kanjiSignsCategories: state.kanjiSignsCategories,
         kanjiPhrasesCategories: action.payload,
+        katakanaCategories: state.katakanaCategories,
+        hiraganaCategories: state.hiraganaCategories,
+      };
+      return newState;
+    case LOAD_KANJI_SIGNS_CATEGORIES_SUCCESS:
+      var newState = {
+        kanjiSignsCategories: action.payload,
+        kanjiPhrasesCategories: state.kanjiPhrasesCategories,
         katakanaCategories: state.katakanaCategories,
         hiraganaCategories: state.hiraganaCategories,
       };
