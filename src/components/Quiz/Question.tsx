@@ -90,7 +90,8 @@ const Question = (props: PropsFromRedux) => {
 
   function getControlToRender(abc) {
     switch (abc) {
-      case "kanji":
+      case "kanjiphrases":
+      case "kanjisigns":
         let kanjiQuestionHelper = new KanjiQuestionHelper(
           isAnswered,
           correctAnswer as KanjiLetter,

@@ -51,3 +51,21 @@ export function mapCategoryToHiragana(category: string): string {
       return "ほ";
   }
 }
+
+
+export function mapNumberToJlpt(category: string): string {
+  switch (category) {
+    case "1":
+      return "J1";
+    case "2":
+      return "J2";
+    case "3":
+      return "J3";
+    case "4":
+      return "J4";
+    case "5":
+      return "J5";
+    default:
+      return "-";
+  }
+}

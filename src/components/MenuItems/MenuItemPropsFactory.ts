@@ -4,6 +4,7 @@ import {
   renderKatakanaSubMenuItem,
   renderHiraganaSubMenuItem,
   renderKanjiSubMenuItem,
+  renderKanjiSignSubMenuItem
 } from "../common/renderers/LetterRenderer";
 
 export function order(type: AbcType, categories: string[]): MenuItemProps {
@@ -38,11 +39,11 @@ export function order(type: AbcType, categories: string[]): MenuItemProps {
     case AbcType.KANJI_SIGNS:
       return {
         categories,
-        renderSubMenuItem: renderKanjiSubMenuItem,
+        renderSubMenuItem: renderKanjiSignSubMenuItem,
         abcTypeCss: type.toLowerCase(),
         abcType: type.toLowerCase(),
         subMenuItemHeader: "Kanji signs",
-        menuItemText: "語",
+        menuItemText: "言",
       };
   }
 }

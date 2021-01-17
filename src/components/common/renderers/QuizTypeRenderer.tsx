@@ -4,8 +4,9 @@ import {
   mapCategoryToFa,
   mapCategoryToKatakana,
   mapCategoryToHiragana,
+  mapNumberToJlpt,
 } from "../../MenuItems/CategoryMappers";
-import { renderKanjiSubMenuItem as renderKanji } from "./LetterRenderer";
+import { renderKanjiSubMenuItem as renderKanji, renderKanjiSignSubMenuItem as renderKanjiSign } from "./LetterRenderer";
 import { renderKana } from "./KanaRenderer";
 
 export function setQuizType(abc: AbcType, type: string): JSX.Element {
@@ -16,6 +17,8 @@ export function setQuizType(abc: AbcType, type: string): JSX.Element {
       return renderKana(mapCategoryToKatakana(type), "statistics-value-text");
     case AbcType.KANJI_PHRASES.toLowerCase():
       return renderKanji(type);
+    case AbcType.KANJI_SIGNS.toLowerCase():
+      return renderKana(mapNumberToJlpt(type), "statistics-value-text");
     default:
       return <></>;
   }

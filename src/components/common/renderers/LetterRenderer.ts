@@ -2,6 +2,7 @@ import {
   mapCategoryToFa,
   mapCategoryToKatakana,
   mapCategoryToHiragana,
+  mapNumberToJlpt
 } from "../../MenuItems/CategoryMappers";
 
 import { renderKanjiSubMenu, renderKanaSubMenu } from "./SubMenuItemRenderers";
@@ -18,5 +19,10 @@ export function renderKatakanaSubMenuItem(category: string): JSX.Element {
 
 export function renderHiraganaSubMenuItem(category: string): JSX.Element {
   let symbol = mapCategoryToHiragana(category);
+  return renderKanaSubMenu(symbol);
+}
+
+export function renderKanjiSignSubMenuItem(category: string): JSX.Element {
+  let symbol = mapNumberToJlpt(category);
   return renderKanaSubMenu(symbol);
 }
